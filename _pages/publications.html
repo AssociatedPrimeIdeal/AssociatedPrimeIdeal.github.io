@@ -5,10 +5,6 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">A current publication list is also available on <a href="{{site.author.googlescholar}}">Google Scholar</a>.</div>
-{% endif %}
-
 {% include base_path %}
 
 <!-- New style rendering if publication categories are defined -->
@@ -23,11 +19,57 @@ author_profile: true
         <h2>{{ category[1].title }}</h2><hr />
         {% assign title_shown = true %}
       {% endunless %}
-      {% include archive-single.html %}
+      {% assign publication_link = post.paperurl | default: post.link %}
+      {% assign publication_authors = post.authors | default: post.citation | split: '. (' | first %}
+      {% assign publication_authors = publication_authors | replace: "Yuyang Ren", "<strong>Yuyang Ren</strong>" %}
+
+      <div class="list__item">
+        <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+          <p class="archive__item-title" itemprop="headline">
+            {% if publication_link %}
+              <a href="{{ publication_link }}"><strong>{{ post.title }}</strong></a>
+            {% else %}
+              <strong>{{ post.title }}</strong>
+            {% endif %}
+          </p>
+          {% if publication_authors != "" %}
+            <p class="archive__item-excerpt" itemprop="description">{{ publication_authors }}</p>
+          {% endif %}
+          {% if post.venue %}
+            <p class="archive__item-excerpt" itemprop="description">{{ post.venue }}</p>
+          {% endif %}
+          {% if post.note %}
+            <p class="archive__item-excerpt" itemprop="description"><strong><em>{{ post.note }}</em></strong></p>
+          {% endif %}
+        </article>
+      </div>
     {% endfor %}
   {% endfor %}
 {% else %}
   {% for post in site.publications reversed %}
-    {% include archive-single.html %}
+    {% assign publication_link = post.paperurl | default: post.link %}
+    {% assign publication_authors = post.authors | default: post.citation | split: '. (' | first %}
+    {% assign publication_authors = publication_authors | replace: "Yuyang Ren", "<strong>Yuyang Ren</strong>" %}
+
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <p class="archive__item-title" itemprop="headline">
+          {% if publication_link %}
+            <a href="{{ publication_link }}"><strong>{{ post.title }}</strong></a>
+          {% else %}
+            <strong>{{ post.title }}</strong>
+          {% endif %}
+        </p>
+        {% if publication_authors != "" %}
+          <p class="archive__item-excerpt" itemprop="description">{{ publication_authors }}</p>
+        {% endif %}
+        {% if post.venue %}
+          <p class="archive__item-excerpt" itemprop="description">{{ post.venue }}</p>
+        {% endif %}
+        {% if post.note %}
+          <p class="archive__item-excerpt" itemprop="description"><strong><em>{{ post.note }}</em></strong></p>
+        {% endif %}
+      </article>
+    </div>
   {% endfor %}
 {% endif %}

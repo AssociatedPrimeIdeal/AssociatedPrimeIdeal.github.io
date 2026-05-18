@@ -14,8 +14,8 @@ title_separator          : "-"
 name                     : &name "Yuyang Ren"
 description              : &description "PhD student at ShanghaiTech University working on 4D flow MRI."
 url                      : https://associatedprimeideal.github.io
-baseurl                  : "/homepage" # Set this to "" if the repository is renamed to AssociatedPrimeIdeal.github.io
-repository               : "AssociatedPrimeIdeal/homepage"
+baseurl                  : ""
+repository               : "AssociatedPrimeIdeal/AssociatedPrimeIdeal.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
@@ -30,7 +30,6 @@ author:
   employer         : "School of Biomedical Engineering, ShanghaiTech University"
   uri              : # URL
   email            : "renyy2022@shanghaitech.edu.cn" 
-
   # Academic websites
   academia         : # URL
   arxiv            : # URL - Update with the correct link to your profile
@@ -65,7 +64,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         :
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
@@ -96,7 +95,7 @@ publication_category:
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
-future                   : false
+future                   : true
 read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
 talkmap_link             : false      #change to true to add link to talkmap on talks page
 comments:
