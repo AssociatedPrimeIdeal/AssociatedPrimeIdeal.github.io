@@ -1,85 +1,101 @@
-# Portfolio with Blog Template for Next.js 16 with App Router, Tailwind CSS 4, TypeScript
+# Academic Pages
+**Academic Pages is a GitHub Pages template for personal and professional portfolio-oriented websites.**
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fzhengzangw%2Fnextjs-portfolio-blog-research)
+![Academic Pages template example](images/themes/homepage-light.png "Academic Pages template example")
 
-[![Demo Screenshot](.github/asset/sceenshot.png)](https://www.zangwei.dev/)
+# Getting Started
 
-[Documentation →](https://www.zangwei.dev/open-source/nextjs-portfolio-blog-research/docs)
+1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
+1. Click the "Use this template" button in the top right.
+1. On the "New repository" page, enter your public repository name as "[your GitHub username].github.io", which will also be your website's URL.
+1. Edit site-wide configuration in `_config.yml` and double check that the `url` is the one that you just selected in the previous step and that `repository` reflects the correct path for your repository.
+1. Add your site content, upload any files (like PDFs, .zip files, etc.) to the `files/` directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.
+1. Check status by going to the repository settings, in the "GitHub pages" section
+1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
 
-## Demo
+See more info at https://academicpages.github.io/
 
-- This repo on Vercel: [https://nextjs-portfolio-blog-research.vercel.app/](https://nextjs-portfolio-blog-research.vercel.app/)
-- My portfolio: [zangwei.dev](https://www.zangwei.dev/)
+### Additional Tutorials
 
-## Features
+Additional tutorials for working with the Academic Pages template can be found at the following sites:
+- https://jayrobwilliams.com/posts/2020/06/academic-website/
 
-A modern portfolio website with an integrated blog, supporting seamless AI-assisted coding for easy and highly flexible customization.
+## Running locally
 
-- ⚙️ **Quick setup:** Get started in minutes by editing the [single config file](/src/data.tsx).
-- 📰 **Rich portfolio:** Showcase news, projects, experiences, and more.
-- 📝 **Blog support:** Write effortlessly with Markdown in the [content/](./content) directory.
-- 🌍 **Internationalization:** Out-of-the-box I18n for English & Chinese, easily extendable to other languages.
-- 🌗 **Light & dark mode:** Instantly toggle color themes for the perfect look.
-- 🧭 **Intuitive navigation:** Clean navbar, stylish footer, and simple language switching.
-- 🌐 **Social integration:** Plenty of modern social media icons to connect everywhere.
-- 🤖 **AI-assisted coding:** Seamless with [Cursor](https://www.cursor.com/) and [Cursor Rules](./.cursor).
-- 📚 **Detailed docs:** Start fast & customize deep with [full documentation](https://docs-nextjs-portfolio-blog-research.zangwei.dev/).
+When you are initially working on your website, it is very useful to be able to preview the changes locally before pushing them to GitHub. To work locally you will need to:
 
-**Built with cutting-edge tech:**
+1. Clone the repository and made updates as detailed above.
 
-- ⚡ **Next.js 16:** Powered by the new App Router for flexibility & speed.
-- 🔥 **TypeScript:** Full type-checking and safety.
-- 💎 **Tailwind CSS 4:** Elegant, modern styling out of the box.
-- ✅ **Strict Mode:** Takes advantage of TypeScript strictness and React 19 best practices.
-- 💅 **UI magic:** Beautiful components via [shadcn/ui](https://ui.shadcn.com/) & [magic ui](https://www.magicui.com/).
-- 🎬 **Smooth animation:** Powered by [Framer Motion](https://motion.dev/).
-- 🚀 **Vercel ready:** Deploy in seconds with global fast hosting.
-- 📱 **Responsive design:** Looks stunning on all devices.
-- 🤖 **SEO optimized:** Includes metadata, JSON-LD, and Open Graph tags for top rankings.
-- 🗺️ **Sitemap & robots:** SEO and crawling handled automatically.
-- 💯 **Lighthouse perfection:** Tuned for top performance and best practices.
-- 📊 **Analytics ready:** Connect Google Analytics 4, Google Tag Manager, and Google Search Console for powerful insights.
-- 💖 **Prettier:** Effortless code formatting.
-- 📏 **ESLint:** Linting for code quality and consistency.
-- 🏗️ **Inspired by:** [dillionverma/portfolio](https://github.com/dillionverma/portfolio)
-- 🔒 **Security:** Follows best practices for security and privacy.
+### Using a different IDE
+1. Make sure you have ruby-dev, bundler, and nodejs installed
+    
+    On most Linux distributions and [Windows Subsystem Linux](https://learn.microsoft.com/en-us/windows/wsl/about) the command is:
+    ```bash
+    sudo apt install ruby-dev ruby-bundler nodejs
+    ```
+    If you see error `Unable to locate package ruby-bundler`, `Unable to locate package nodejs `, run the following:
+    ```bash
+    sudo apt update && sudo apt upgrade -y
+    ```
+    then try running `sudo apt install ruby-dev ruby-bundler nodejs` again.
 
-## Getting Started 🚀
+    On MacOS the commands are:
+    ```bash
+    brew install ruby
+    brew install node
+    gem install bundler
+    ```
+1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
 
-Spin up your own portfolio site in **minutes**!
+    If you see file permission error like `Fetching bundler-2.6.3.gem ERROR:  While executing gem (Gem::FilePermissionError) You don't have write permissions for the /var/lib/gems/3.2.0 directory.` or `Bundler::PermissionError: There was an error while trying to write to /usr/local/bin.`
+    Install Gems Locally (Recommended):
+    ```bash
+    bundle config set --local path 'vendor/bundle'
+    ```
+    then try run `bundle install` again. If succeeded, you should see a folder called `vendor` and `.bundle`.
 
-### 1. Clone & install
+1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change to Markdown (*.md) and HTML files, while changes to the core template and configuration (i.e., `_config.yml`) will require stopping and restarting Jekyll.
+    You may also try `bundle exec jekyll serve -l -H localhost` to ensure jekyll to use specific dependencies on your own local machine.
+
+If you are running on Linux it may be necessary to install some additional dependencies prior to being able to run locally: `sudo apt install build-essential gcc make`
+
+## Using Docker
+
+Working from a different OS, or just want to avoid installing dependencies? You can use the provided `Dockerfile` to build a container that will run the site for you if you have [Docker](https://www.docker.com/) installed.
+
+You can build and execute the container by running the following command in the repository:
 
 ```bash
-git clone https://github.com/zhengzangw/nextjs-portfolio-blog-research
-cd nextjs-portfolio-blog-research
-pnpm install    # or: npm install | yarn install
+chmod -R 777 .
+docker compose up
 ```
 
-### 2. Launch the dev server
+You should now be able to access the website from `localhost:4000`.
 
-```bash
-pnpm dev        # or: npm run dev | yarn dev
-```
+### Using the DevContainer in VS Code
 
-Visit [`http://localhost:3000`](http://localhost:3000) to view your site.
+If you are using [Visual Studio Code](https://code.visualstudio.com/) you can use the [Dev Container](https://code.visualstudio.com/docs/devcontainers/containers) that comes with this Repository. Normally VS Code detects that a development container configuration is available and asks you if you want to use the container. If this doesn't happen you can manually start the container by **F1->DevContainer: Reopen in Container**. This restarts your VS Code in the container and automatically hosts your academic page locally on http://localhost:4000. All changes will be updated live to that page after a few seconds.
 
-### 3. Customize your portfolio
+# Maintenance
 
-- Edit your main info in [`/src/data/site.tsx`](/src/data/site.tsx)
-- Edit all interface text & profile sections in [`/src/i18n/messages`](/src/i18n/messages)
-- Add blog posts in [`content/blog`](./content/blog) as Markdown or MDX files
+Bug reports and feature requests to the template should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
 
-The repo includes example portfolio data and blog posts so you'll see real content right away.
+This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii), and additional maintainers would be welcome.
 
----
+## Bugfixes and enhancements
 
-### 🚀 Deploy to Vercel Instantly
+If you have bugfixes and enhancements that you would like to submit as a pull request, you will need to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository as opposed to using it as a template. This will also allow you to [synchronize your copy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) of the template to your fork as well.
 
-Click  
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fzhengzangw%2Fnextjs-portfolio-blog-research)  
-Your portfolio will be live in minutes! No config needed. Vercel’s generous free plan is perfect for personal and demo sites.
+Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize, although [rebasing](https://git-scm.com/docs/git-rebase) the changes from this template will work along with manually [cherry picking](https://git-scm.com/docs/git-cherry-pick) the relevant commits. If you are not comfortable with the Git command line, you can save your various `.yml` configuration files and Markdown files, delete the repository, and fork it again. 
 
 ---
+<div align="center">
+    
+![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
+[![GitHub contributors](https://img.shields.io/github/contributors/academicpages/academicpages.github.io.svg)](https://github.com/academicpages/academicpages.github.io/graphs/contributors)
+[![GitHub release](https://img.shields.io/github/v/release/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/releases/latest)
+[![GitHub license](https://img.shields.io/github/license/academicpages/academicpages.github.io?color=blue)](https://github.com/academicpages/academicpages.github.io/blob/master/LICENSE)
 
-Find more details and advanced guides in the [Documentation](https://www.zangwei.dev/open-source/nextjs-portfolio-blog-research/docs).
+[![GitHub stars](https://img.shields.io/github/stars/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io)
+[![GitHub forks](https://img.shields.io/github/forks/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/fork)
+</div>

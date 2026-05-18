@@ -1,36 +1,32 @@
 ---
-name: Bug Report
-about: Report a bug to help us improve
-title: '[Bug] '
-labels: bug
-assignees: ''
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+
 ---
 
-## Describe the Bug
+**Describe the bug**
+A clear and concise description of what the bug is, be sure to note if the issue is presenet in the *template* or appeared on *your site*. If the bug appears on your site, please be sure to provide a link to your repository.
 
-A clear and concise description of what the bug is.
-
-## Steps to Reproduce
-
+**To Reproduce**
+Steps to reproduce the behavior:
 1. Go to '...'
-2. Click on '...'
-3. Scroll down to '...'
+2. Click on '....'
+3. Scroll down to '....'
 4. See error
 
-## Expected Behavior
-
+**Expected behavior**
 A clear and concise description of what you expected to happen.
 
-## Screenshots
-
+**Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-## Environment
+**Browser (please complete the following information):**
+ - Device: [e.g. iPhone6] (if applicable)
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
 
-- Browser: [e.g. Chrome 120, Safari 17]
-- OS: [e.g. macOS 14, Windows 11]
-- Device: [e.g. Desktop, iPhone 15]
-
-## Additional Context
-
+**Additional context**
 Add any other context about the problem here.
