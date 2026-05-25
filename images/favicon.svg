@@ -1,1 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20"><title>OOjs_UI_icon_academic-progressive</title><path d="M12.13,14,12,14l-.13,0L7,12.63V16c0,1.1,2.24,2,5,2s5-.9,5-2V12.63Z" fill="#36c"/><path d="M21.13,9.52l-9-2.5a.39.39,0,0,0-.26,0l-9,2.5a.5.5,0,0,0,0,1l9,2.5L12,13l.13,0,9-2.5a.5.5,0,0,0,0-1Z" fill="#36c"/><path d="M19.5,14.5a1,1,0,0,0-.5-.85V10H18v3.65a1,1,0,0,0-.5.85,1,1,0,0,0,.45.81L17.5,18c0,.37.45.67,1,.67s1-.3,1-.67l-.45-2.69A1,1,0,0,0,19.5,14.5Z" fill="#36c"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Penguin favicon">
+  <title>Penguin favicon</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#bg)"/>
+  <ellipse cx="256" cy="286" rx="122" ry="144" fill="#0f172a"/>
+  <ellipse cx="256" cy="308" rx="82" ry="106" fill="#f8fafc"/>
+  <ellipse cx="218" cy="216" rx="20" ry="24" fill="#f8fafc"/>
+  <ellipse cx="294" cy="216" rx="20" ry="24" fill="#f8fafc"/>
+  <circle cx="218" cy="220" r="8" fill="#0f172a"/>
+  <circle cx="294" cy="220" r="8" fill="#0f172a"/>
+  <path d="M256 238l-32 24h64z" fill="#f59e0b"/>
+  <path d="M176 278c-32 8-48 34-44 72 24-8 42-24 54-52z" fill="#0f172a"/>
+  <path d="M336 278c32 8 48 34 44 72-24-8-42-24-54-52z" fill="#0f172a"/>
+  <ellipse cx="214" cy="402" rx="34" ry="18" fill="#f59e0b"/>
+  <ellipse cx="298" cy="402" rx="34" ry="18" fill="#f59e0b"/>
+</svg>
