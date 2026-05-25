@@ -12,5 +12,3 @@ authors: "Yuyang Ren, Zijian Zhou, and Peng Hu"
 note: "Digital Poster (Magna Cum Laude award)"
 citation: 'Yuyang Ren, Zijian Zhou, and Peng Hu. (2025). "Comparison of reconstruction methods of highly accelerated 3D dynamic cardiovascular MRI using the 4D XCAT phantom." <i>ISMRM & ISMRT 2025 Annual Meeting & Exhibition</i>.'
 ---
-
-Digital Poster (Magna Cum Laude award).

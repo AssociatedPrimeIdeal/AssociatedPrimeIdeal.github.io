@@ -12,7 +12,7 @@ site_theme               : "air" # The available themes options are "default", "
 title                    : "Yuyang Ren"
 title_separator          : "-"
 name                     : &name "Yuyang Ren"
-description              : &description "PhD student at ShanghaiTech University working on 4D flow MRI."
+description              : &description "Ph.D. student at ShanghaiTech University working on 4D flow MRI."
 url                      : https://associatedprimeideal.github.io
 baseurl                  : ""
 repository               : "AssociatedPrimeIdeal/AssociatedPrimeIdeal.github.io"
@@ -25,7 +25,7 @@ author:
   avatar           : "me.jpg"
   name             : "Yuyang Ren / 任宇扬"
   pronouns         : # example: "she/her"  
-  bio              : "PhD student working on sequence design, reconstruction, and post-processing for 4D flow MRI."
+  bio              : "Ph.D. student working on sequence design, reconstruction, and post-processing for 4D flow MRI."
   location         : "Shanghai, China"
   employer         : "School of Biomedical Engineering, ShanghaiTech University"
   uri              : # URL

@@ -12,5 +12,3 @@ authors: "Yuyang Ren, Ruiyu Cao, Zijian Zhou, Chengyan Wang, Hao Li, and Peng Hu
 note: "Oral Presentation (Magna Cum Laude award)"
 citation: 'Yuyang Ren, Ruiyu Cao, Zijian Zhou, Chengyan Wang, Hao Li, and Peng Hu. (2026). "A Fully Automated Pipeline for Multi-Region 4D Flow MRI Analysis." <i>ISMRM & ISMRT 2026 Annual Meeting & Exhibition</i>.'
 ---
-
-Oral Presentation (Magna Cum Laude award).

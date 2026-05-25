@@ -12,5 +12,3 @@ authors: "Yuyang Ren, Zijian Zhou, Yuan Feng, Yining Wang, and Peng Hu"
 note: "Oral Presentation (Magna Cum Laude award)"
 citation: 'Yuyang Ren, Zijian Zhou, Yuan Feng, Yining Wang, and Peng Hu. (2026). "PUDIP-Flow: An Unsupervised and Segmentation-Free Phase Unwrapping Method for Aortic and Cerebrovascular 4D Flow MRI." <i>ISMRM & ISMRT 2026 Annual Meeting & Exhibition</i>.'
 ---
-
-Oral Presentation (Magna Cum Laude award).

@@ -37,6 +37,9 @@
       <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
     {% if post.venue%}<p class="archive__item-excerpt" itemprop="description">{{ post.citation }}</p> {% endif %}
+    {% if post.note %}
+      <p class="archive__item-note{% if post.note contains 'Magna Cum Laude award' %} archive__item-note--highlight{% endif %}">{{ post.note }}</p>
+    {% endif %}
     </li>
  </article>
 </div>
