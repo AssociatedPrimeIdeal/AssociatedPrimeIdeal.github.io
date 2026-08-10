@@ -5,7 +5,7 @@ category: conferences
 permalink: /publication/2024-accelerated-4d-flow-mri-deep-low-rank-plus-sparse-neural-network-complex-difference
 excerpt: "Conference paper on accelerated 4D flow MRI using a deep low-rank plus sparse neural network and complex difference."
 date: 2024-05-27
-venue: "2024 IEEE International Symposium on Biomedical Imaging"
+venue: "IEEE International Symposium on Biomedical Imaging (ISBI) 2024"
 paperurl: "https://dblp.org/rec/conf/isbi/RenLZQH24"
 paperlabel: "Conference Paper"
 authors: "Yuyang Ren, Wenjian Liu, Zijian Zhou, Haikun Qi, and Peng Hu"

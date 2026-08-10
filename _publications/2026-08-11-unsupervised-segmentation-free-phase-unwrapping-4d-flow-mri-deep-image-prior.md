@@ -13,4 +13,4 @@ note: "Accepted at MICCAI 2026"
 citation: 'Yuyang Ren, Zijian Zhou, and Peng Hu. (2026). "Unsupervised and Segmentation-Free Phase Unwrapping for 4D Flow MRI Using Deep Image Prior." <i>Medical Image Computing and Computer Assisted Intervention (MICCAI) 2026</i>. Accepted.'
 ---
 
-Accepted at MICCAI 2026.
+
