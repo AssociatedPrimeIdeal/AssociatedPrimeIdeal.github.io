@@ -1,0 +1,2320 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="面向 4D Flow MRI 的加载、分割、血流分析与质量控制文档">
+      
+      
+        <meta name="author" content="AutoFlow contributors">
+      
+      
+        <link rel="canonical" href="https://associatedprimeideal.github.io/docs/autoflow/en/user/gui/">
+      
+      
+        <link rel="prev" href="../../developer/testing/">
+      
+      
+        <link rel="next" href="../cli/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>GUI details - AutoFlow · 4D Flow MRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gui-guide" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="AutoFlow · 4D Flow MRI" class="md-header__button md-logo" aria-label="AutoFlow · 4D Flow MRI" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AutoFlow · 4D Flow MRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GUI details
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="teal"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="teal"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AssociatedPrimeIdeal/AutoFlow" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AssociatedPrimeIdeal/AutoFlow
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../zh/user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  中文
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../developer/architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开发者
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AutoFlow · 4D Flow MRI" class="md-nav__button md-logo" aria-label="AutoFlow · 4D Flow MRI" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    AutoFlow · 4D Flow MRI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AssociatedPrimeIdeal/AutoFlow" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AssociatedPrimeIdeal/AutoFlow
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中文
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    中文
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/user-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    示例：主动脉 H5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/input-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    输入与输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example: Aorta H5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../input-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input & Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发者
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发者
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/feature-to-code-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能到代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/config-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/change-recipes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    修改配方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUI details
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUI details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-the-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start The GUI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Menu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Menu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings Menu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step Buttons
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-panels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter Panels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segmentation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Segmentation Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video Export
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selection-browser-and-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selection, Browser, And Timeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ortho-viewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ortho Viewer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-segmentation-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Segmentation Editor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-the-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When To Use The GUI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cmrrecon-comparison-popup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMRRecon Comparison Popup
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/segmentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segmentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/planes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planes and metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/wss-tke-pressure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WSS, TKE and pressure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/streamlines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Streamlines and pathlines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/videos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-the-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start The GUI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Menu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Menu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings Menu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step Buttons
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-panels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter Panels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segmentation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Segmentation Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#video-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video Export
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selection-browser-and-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selection, Browser, And Timeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ortho-viewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ortho Viewer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-segmentation-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Segmentation Editor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-the-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When To Use The GUI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cmrrecon-comparison-popup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMRRecon Comparison Popup
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="gui-guide">GUI Guide<a class="headerlink" href="#gui-guide" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p><code>autoflow-gui</code> is supported for interactive loading, segmentation review, grouped vessel processing, step execution, and visualization.</p>
+<p>Entry files:</p>
+<ul>
+<li><code>pyproject.toml</code></li>
+<li><code>autoflow/ui/launcher.py</code></li>
+<li><code>autoflow/ui/app.py</code></li>
+<li><code>autoflow/ui/remote_plotter.py</code></li>
+<li><code>autoflow/ui/theme.py</code></li>
+</ul>
+<p>The desktop GUI uses PySide6. The three orthogonal slice views and the manual segmentation editor use pyqtgraph; the selected oblique-plane plot and analysis plots continue to use Matplotlib.</p>
+<h2 id="start-the-gui">Start The GUI<a class="headerlink" href="#start-the-gui" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>autoflow-gui
+</span></code></pre></div>
+<p>On Windows, a packaged release can be started directly with <code>AutoFlow-GUI.exe</code>. The standalone build includes the GUI dependencies, nnUNet inference runtime, <code>dataset.json</code>, <code>plans.json</code>, and <code>fold_all/checkpoint_final.pth</code>; it does not require a Python installation or a separate model directory. The single-file build extracts its runtime to a temporary directory at startup, so its first launch is slower than the installed Python entry point.</p>
+<p>Or load defaults from a custom config directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>autoflow-gui<span class="w"> </span>--config-dir<span class="w"> </span>./configs
+</span></code></pre></div>
+<p>For a regular forwarded SSH session, connect with trusted X11 forwarding and
+start the same command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh<span class="w"> </span>-Y<span class="w"> </span>&lt;host&gt;
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>autoflow-gui
+</span></code></pre></div>
+<p>When <code>DISPLAY</code> has the forwarded <code>localhost:N.0</code> form, AutoFlow automatically
+renders VTK through off-screen EGL and transfers the completed 3D image into a
+normal Qt widget. In the 3-D view, VTK's default trackball-camera mapping is
+used: left-drag rotates, middle-drag pans, right-drag performs dolly/zoom, and
+the mouse wheel zooms. When PC-MRA is visible, <code>Shift</code>+left-drag adjusts its
+window/level. Existing 3D picking and edit controls remain available. A local
+display such as <code>DISPLAY=:1</code> continues to use the native embedded VTK
+widget. SSH rendering affects display latency only; loaded arrays, processing,
+and saved numerical results are identical.</p>
+<h2 id="main-layout">Main Layout<a class="headerlink" href="#main-layout" title="Permanent link">&para;</a></h2>
+<p>The main window contains:</p>
+<ul>
+<li>menu bar</li>
+<li>workflow navigation for <code>Input &amp; QC</code>, <code>Segmentation</code>, <code>Phase Unwrapping</code>, <code>Centerline &amp; Planes</code>, <code>Hemodynamics</code>, and <code>Review &amp; Export</code></li>
+<li>left browser</li>
+<li>central 3D view</li>
+<li>steps area</li>
+<li>parameter panels</li>
+<li>right ortho viewer</li>
+<li>bottom timeline</li>
+<li>bottom <code>Selection</code> and <code>Log</code> tabs</li>
+<li>right segmentation dock</li>
+<li>right analysis dock</li>
+</ul>
+<p>The GUI uses a shared light workbench theme across the main window, dialogs, tables, parameter panels, and docks. The timeline uses fixed-size previous, play, pause, and next icons; hover each icon for its action name. Its <code>ms</code> value is the requested delay between frames, not the acquisition time resolution. While playback runs, the timeline reports a rolling scene-and-slice render time plus the effective FPS. When render time exceeds the requested delay, playback runs at the fastest rate the visible scene can sustain. Selection details and the runtime log share a compact bottom tab area so the 3D and ortho views retain more vertical space.</p>
+<p>The loaded arrays are already normalized to <code>LR/AP/FH</code>. The 3D orientation axes, ortho sliders, flow-component names, pressure-gradient component names, and slice titles use those physical direction labels instead of generic <code>X/Y/Z</code>. The source file's original <code>SpatialOrder</code> remains visible in the input settings and metadata for auditing, but it is not reused to label arrays after normalization. The top-level <code>Settings &gt; 3D Axis Orientation</code> action can apply a display-only reversal of the X/Y/Z positive directions (for example <code>LR</code> to <code>RL</code>); all rendered 3D objects are mirrored together while internal arrays and analysis coordinates remain unchanged.</p>
+<p>The left browser is group-aware and path-aware. When the loaded segmentation produces multiple vessel groups, the browser shows one top-level section per group. Path geometry, generated planes, and their pathlines are organized as <code>Paths -&gt; Path -&gt; Plane -&gt; Pathline</code>; each path row shows its plane count. Manual or unmatched planes appear under <code>Unbound Planes</code>. Group, path, and plane checkboxes control all descendants, while selecting a path or plane updates the corresponding 3D highlight and analysis panel. Use Ctrl/Shift selection with a plane context menu to launch pathlines for that subset; the main <code>Pathlines</code> action runs all planes.</p>
+<p>When magnitude and flow are loaded, <code>Global → PC-MRA (4D)</code> is available as a
+grayscale VTK volume backdrop. It is phase-resolved (<code>magnitude_t × speed_t</code>)
+and updates with the timeline/playback, with a low-intensity transfer function
+to suppress background noise. The default volume color transfer is grayscale
+with white high intensities, and the default 3-D background is black. Select any Browser object to adjust its
+individual <code>Opacity</code> with the slider below the tree; the context menu also has
+<code>Set Opacity…</code> and <code>Reset Opacity (100%)</code>. Selecting a group applies the slider
+to all of its descendants. The right-hand ortho viewer has a separate
+<code>Overlay</code> slider for the 2-D segmentation overlay; it does not change the
+underlying scalar window/level.</p>
+<p>When <code>PC-MRA (4D)</code> is visible, hold <code>Shift</code> and the central 3-D view's left
+mouse button, then drag horizontally for window width and vertically for window
+level. The Browser context menu's <code>Reset PC-MRA Window/Level</code> restores the
+automatic current-frame range. Without <code>Shift</code>, the default left-drag rotation and
+middle-drag pan remain unchanged.</p>
+<p>The <code>Window/Level</code> control bar below the 3-D view provides <code>Window</code> and <code>Level</code>
+sliders for the selected scalar scene object. It works for PC-MRA, WSS, TKE,
+pressure-gradient layers, and streamline objects; <code>Auto</code> restores that object's
+automatic range. The <code>Overlay</code> opacity slider is independent and controls the
+2-D segmentation overlay directly.</p>
+<p>On SSH-forwarded X11, <code>autoflow-gui</code> automatically selects the off-screen
+rendering widget and transfers the rendered image into the Qt window. The
+terminal remains occupied while the GUI is open; close the AutoFlow window or
+press <code>Ctrl+C</code> to end the process.</p>
+<p>The workflow navigation filters actions and parameters to the active task. Everyday controls remain visible; advanced skeleton, WSS, and pressure parameters are hidden until <code>Advanced</code> is enabled, while vortex controls remain visible in Hemodynamics. In <code>Hemodynamics</code>, plane metrics, derived metrics, live streamlines, and pathlines form a 2x2 action grid; <code>Run All</code> and <code>Compute PWV</code> are full-width rows below it. The segmentation dock appears only in the Segmentation stage, and the Analysis dock appears in Hemodynamics and Review. The status beside the navigation reports <code>Ready</code>, <code>Needs review</code>, <code>Incomplete</code>, or <code>Not ready</code> from current workspace prerequisites.</p>
+<p>Input also provides <code>Reload Input with Current Parameters</code>. An unchanged input signature is skipped; changed correction, geometry, VENC, or DICOM override settings reload the source and invalidate downstream artifacts. The default correction method is WRLS + ARTO. Corr content is enabled only after correction is applied or reused; dual-venc cases show separate normalized <code>Corr Low LR/AP/FH</code> and <code>Corr High LR/AP/FH</code> fields.</p>
+<h2 id="file-menu">File Menu<a class="headerlink" href="#file-menu" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Menu item</th>
+<th>What it does</th>
+<th>Main code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Open H5</code></td>
+<td>open an H5 or HDF5 case; prompts for a data-group path when one file contains multiple supported cases, then reuses a compatible correction cache when available</td>
+<td><code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>Import DICOM Directory</code></td>
+<td>scan a DICOM directory and choose a case</td>
+<td><code>autoflow/ui/app.py</code>, <code>autoflow/ui/dicom_confirm.py</code></td>
+</tr>
+<tr>
+<td><code>Clear Workspace</code></td>
+<td>clear loaded data and restore config defaults in the UI</td>
+<td><code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>Exit</code></td>
+<td>close the GUI</td>
+<td><code>autoflow/ui/app.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="export-menu">Export Menu<a class="headerlink" href="#export-menu" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Menu item</th>
+<th>What it does</th>
+<th>Main code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Export Videos...</code></td>
+<td>choose an output directory and export selected plane, WSS, TKE, pressure-analysis, or streamline videos</td>
+<td><code>autoflow/ui/app.py</code>, <code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>Export Plane Coordinates...</code></td>
+<td>export selected Browser planes, or all planes when none are selected</td>
+<td><code>autoflow/ui/app.py</code>, <code>autoflow/plane_io.py</code></td>
+</tr>
+<tr>
+<td><code>Export QC Report...</code></td>
+<td>write the current staged automated quality report</td>
+<td><code>autoflow/ui/app.py</code>, <code>autoflow/quality.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="settings-menu">Settings Menu<a class="headerlink" href="#settings-menu" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Menu item</th>
+<th>What it does</th>
+<th>Main code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>3D Axis Orientation...</code></td>
+<td>choose the displayed positive direction for each 3D axis; the scene mirrors around its center while internal data remains unchanged</td>
+<td><code>autoflow/ui/app.py</code>, <code>autoflow/ui/viewer.py</code></td>
+</tr>
+<tr>
+<td><code>3D Background Color...</code></td>
+<td>choose the 3-D viewport background color; the choice applies to surfaces and PC-MRA volume rendering and starts from the <code>ui.background_color</code> config value</td>
+<td><code>autoflow/config.py</code>, <code>autoflow/ui/app.py</code>, <code>autoflow/ui/viewer.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="standard-workflow">Standard Workflow<a class="headerlink" href="#standard-workflow" title="Permanent link">&para;</a></h2>
+<ol>
+<li>start the GUI</li>
+<li>load a case through <code>Open H5</code> or <code>Import DICOM Directory</code></li>
+<li>for H5, the GUI uses an existing correction cache and embedded segmentation directly; when correction is missing, it first asks whether correction is needed and then shows a method dropdown with <code>MSAC</code> and <code>WRLS + ARTO</code></li>
+<li>for DICOM, confirm or edit resolution, venc, spatial order, venc order, and RR</li>
+<li>check loader parameters in <code>Input / Background Correction</code>, including dual-venc ratios for legacy <code>Nv=7</code> H5 when needed</li>
+<li>in the <code>Segmentation</code> workflow stage, configure nnUNet if needed and click <code>Run Automatic Segmentation</code> explicitly</li>
+<li>optionally open <code>Phase Unwrapping</code>, choose <code>gc3D</code>, <code>lap4D</code>, or <code>nprs</code>, and click <code>Unwrap Phase</code>; method-specific parameters appear for the selected method and dual-VENC inputs are skipped automatically</li>
+<li>if phase unwrapping ran, inspect <code>Estimated Wrap Locations</code>, <code>Phase Wrap Count</code>, and the <code>Unwrapped − Wrapped</code> views to see where wraps were detected</li>
+<li>if the segmentation is a label mask, AutoFlow will reduce 4D labels to 3D by time majority vote, remove small connected components per label, merge labels by configured groups, filter grouped components with the configured skeleton cleanup rule, and then run grouped skeleton, graph, and plane generation</li>
+<li>move through the workflow stages and run the actions shown for the current stage; <code>Run All</code> is limited to the active stage</li>
+<li>inspect group sections in the browser, 3D view, ortho viewer, and selection panel</li>
+<li>click <code>Pathlines</code> to generate all planes by default, or use a plane context menu to choose This Plane or Selected Planes; generated planes accumulate, and requesting an existing single-plane pathline selects it instead of integrating it again</li>
+<li>open <code>Review &amp; Export</code>, refresh QC, inspect warnings and suggested actions, then export the report when needed</li>
+<li>open the top-level <code>Settings &gt; 3D Axis Orientation</code> action to reverse any displayed positive axis direction (LR/RL, AP/PA, or FH/HF) when the case's viewing convention requires it</li>
+<li>use <code>Export &gt; Export Videos...</code> when you want selected offline MP4 exports</li>
+<li>save the active segmentation if you want to reuse it later</li>
+</ol>
+<h2 id="step-buttons">Step Buttons<a class="headerlink" href="#step-buttons" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Purpose</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Generate Skeleton</code></td>
+<td>skeletonize the active segmentation</td>
+<td>binary masks run as one group; label masks run per configured group</td>
+</tr>
+<tr>
+<td><code>Generate Graph</code></td>
+<td>build graph, branches, and paths</td>
+<td>depends on skeleton and preserves group names</td>
+</tr>
+<tr>
+<td><code>Generate Planes</code></td>
+<td>create uniform or fixed-step planes with anchor, direction, and distance/fraction spacing</td>
+<td>defaults to center/both/3/25%; segmentation filter is enabled and QC records actual counts</td>
+</tr>
+<tr>
+<td><code>Calculate &amp;&amp; Save Metrics</code></td>
+<td>compute and save basic plane flow, area, and velocity metrics; reuse derived fields only when they already exist</td>
+<td>requires segmentation and flow; it does not implicitly start WSS/TKE/pressure computation</td>
+</tr>
+<tr>
+<td><code>WSS / TKE / Pressure / Vortex</code></td>
+<td>compute missing derived families, add supported derived summaries to existing plane metrics, and refresh scene objects</td>
+<td>TKE stays optional; vortex fields are whole-volume only; cached families are not recomputed</td>
+</tr>
+<tr>
+<td><code>Generate Streamlines</code></td>
+<td>enable live streamlines from the combined segmentation</td>
+<td>requires segmentation</td>
+</tr>
+<tr>
+<td><code>Pathlines</code></td>
+<td>launch time-resolved pathlines for all planes by default</td>
+<td>runs in the same Qt background-worker/progress-dialog pattern as automatic segmentation; use the plane context menu for This Plane or Selected Planes. Existing plane pathlines are preserved and skipped; a repeated single-plane request selects its existing Browser object. Particles are released once at <code>t=0</code>; playback reveals their cached trajectory prefix at each later phase without re-running VTK. <code>Fixed Count</code> seeds default to <code>250</code>; use <code>Ratio</code> for area-dependent density. Pathline-only controls, including seed settings, tube radius, colors, and temporal cache, load from <code>configs/pathlines.json</code>; live streamline settings remain in <code>configs/streamlines.json</code>.</td>
+</tr>
+<tr>
+<td><code>Import Plane Coordinates...</code></td>
+<td>import v2 or legacy plane JSON beside <code>Generate Planes</code> using world, local, or relative-centerline mapping</td>
+<td>available in Centerline &amp; Planes</td>
+</tr>
+<tr>
+<td><code>Edit Skeleton</code></td>
+<td>enter a dedicated skeleton edit mode</td>
+<td>select a group object in the browser to edit that vessel directly; otherwise choose a vessel group in the dialog. The scene hides unrelated layers; select and drag points, use Delete/Backspace to remove, then use <code>Save Changes</code>, <code>Cancel</code>, or Esc</td>
+</tr>
+<tr>
+<td><code>Edit Graph</code></td>
+<td>enter a dedicated graph edit mode</td>
+<td>select a group object in the browser to edit that vessel directly; otherwise choose a vessel group in the dialog. The scene hides unrelated layers; select/drag nodes, select/delete edges, press E or use Edge Mode to add/remove edges, then save or cancel</td>
+</tr>
+<tr>
+<td><code>Run All</code></td>
+<td>in <code>Centerline &amp; Planes</code>, run skeleton, graph, and planes; in <code>Hemodynamics</code>, run plane metrics, derived metrics, live streamlines, and all-plane pathlines</td>
+<td>does not create segmentation automatically; <code>Compute PWV</code> remains explicit</td>
+</tr>
+</tbody>
+</table>
+<p>Compute-oriented pipeline buttons execute in Qt workers. Pathline integration also runs in its own worker before the GUI creates its VTK scene actors, so slow integration does not block the application window. The progress dialog remains responsive while algorithms run. After completion, the GUI invalidates and rebuilds only scene objects affected by those steps instead of recreating every VTK actor. Closing the window is blocked while a task is active so the workspace cannot be destroyed during a calculation.</p>
+<p><code>Run All</code> scope:</p>
+<ol>
+<li><code>Centerline &amp; Planes</code>: <code>Generate Skeleton</code> -&gt; <code>Generate Graph</code> -&gt; <code>Generate Planes</code></li>
+<li><code>Hemodynamics</code>: <code>Calculate &amp;&amp; Save Metrics</code> -&gt; <code>WSS / TKE / Pressure / Vortex</code> -&gt; <code>Generate Streamlines</code> -&gt; <code>Pathlines</code> for every plane. The metric stages run in a background worker; streamlines are then added to the live scene and pathline integration runs in its own worker.</li>
+</ol>
+<h2 id="parameter-panels">Parameter Panels<a class="headerlink" href="#parameter-panels" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Panel</th>
+<th>Main purpose</th>
+<th>Main code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Input / Background Correction</code></td>
+<td>loader and DICOM settings, including the active <code>MSAC</code> or <code>WRLS + ARTO</code> correction method</td>
+<td><code>autoflow/ui/app.py</code>, <code>autoflow/config.py</code></td>
+</tr>
+<tr>
+<td><code>Generate Skeleton Parameters</code></td>
+<td>cleanup and morphology controls, including the <code>Separate Special Label Contacts</code> switch for <code>RBCT</code>/<code>CCA</code>/<code>LBCT</code> contacts</td>
+<td><code>autoflow/ui/app.py</code>, <code>autoflow/config.py</code></td>
+</tr>
+<tr>
+<td><code>Generate Planes Parameters</code></td>
+<td>uniform/fixed-step layout, segmentation filter, and advanced trim controls</td>
+<td><code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>PWV Parameters</code></td>
+<td>edit groups, waveform selection, spacing, and plot styling</td>
+<td><code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>Streamline Parameters</code></td>
+<td>seed density, steps, terminal speed, colors</td>
+<td><code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>WSS Parameters</code></td>
+<td>WSS-specific controls plus runtime render and shared colorbar controls for live scalar layers, including width, height, position, and font sizes</td>
+<td><code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>Flow / TKE / Pressure Parameters</code></td>
+<td>WSS, TKE, and pressure controls; shown with <code>Advanced</code></td>
+<td><code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>Vortex Kinematics Parameters</code></td>
+<td>Gaussian smoothing and support-erosion controls; visible in Hemodynamics by default</td>
+<td><code>autoflow/ui/app.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>After <code>WSS / TKE / Pressure / Vortex</code> completes, the ortho viewer <code>Content</code> menu provides <code>Vorticity Magnitude (s⁻¹)</code>, <code>Q-Criterion (s⁻²)</code>, and <code>Swirling Strength λci (s⁻¹)</code>. <code>Vortex Support Erosion (vox)</code> defaults to <code>1</code>; it only limits the valid derivative region and does not alter the segmentation.</p>
+<p>The correction-method dropdown defaults to <code>WRLS + ARTO</code>. Choosing <code>MSAC</code> enables the MSAC-only threshold control; WRLS tuning values continue to come from <code>configs/loader.json</code>. CUDA use inside WRLS+ARTO is automatic and has no GUI device selector.</p>
+<h2 id="segmentation-workflow">Segmentation Workflow<a class="headerlink" href="#segmentation-workflow" title="Permanent link">&para;</a></h2>
+<p>The GUI segmentation system supports:</p>
+<ul>
+<li>original segmentation</li>
+<li>imported segmentation</li>
+<li>threshold segmentation</li>
+<li>automatic segmentation through <code>nnUNet</code></li>
+<li>external segmentation editing through the optional SpatioTemporal Labeler</li>
+</ul>
+<p>Important behavior:</p>
+<ul>
+<li><code>Run All</code> does not auto-start segmentation</li>
+<li>segmentation must already exist when segmentation-dependent steps run</li>
+<li>opening H5 checks the selected case group before loading: a reusable <code>corr</code> cache selects the cached correction method; embedded <code>segmask</code>, <code>segmentation</code>, or <code>seg</code> becomes the initial active source</li>
+<li>when correction is absent, the GUI asks whether it should run; answering <code>Yes</code> opens a second dropdown for <code>MSAC</code> or <code>WRLS + ARTO</code>, while cancelling either dialog cancels the load</li>
+<li>input loading never starts or asks to start automatic segmentation</li>
+<li>the top menu bar has no separate <code>Segmentation</code> menu; source switching and segmentation commands are kept in the right-side <code>Segmentation</code> dock</li>
+<li>use <code>Source -&gt; Configure...</code> to save automatic-segmentation settings, then click <code>Run Automatic Segmentation</code> in the Segmentation dock; <code>Import...</code> and <code>Save...</code> are beside the source settings</li>
+<li>an input case's embedded segmentation is activated during loading; click <code>Run Automatic Segmentation</code> only when you want to replace it with a new model result</li>
+<li><code>Open in SpatioTemporal Labeler</code> is available when the optional <code>labeler</code> extra is installed; it exports <code>mag</code>, three flow components, <code>pcmra</code>, and the active segmentation as NIfTI files through a separate editor process</li>
+<li>the shipped automatic-segmentation settings default to the Dataset7020 <code>nnUNet4D</code> script; enter a static model folder and select <code>nnUNet</code> when a 3D model is required</li>
+<li>GUI auto segmentation uses the same window-modal progress dialog as other long-running GUI tasks; closing it hides progress permanently for that run and does not cancel the background worker, while completion still applies the result and failure opens an explicit error dialog</li>
+<li>automatic and threshold segmentations save sidecar H5 files after a successful run</li>
+<li>automatic segmentation also saves the predicted segmentation NIfTI plus the feature-channel NIfTI inputs used for that run</li>
+<li>the Labeler export dialog advances once for <code>mag</code>, <code>flow_x</code>, <code>flow_y</code>, <code>flow_z</code>, <code>pcmra</code>, and <code>segmentation</code>; files are uncompressed <code>.nii</code> for faster exchange</li>
+<li>save the original <code>segmentation.nii</code> in Labeler with <code>Ctrl+S</code>; after Labeler exits, AutoFlow detects the changed file and offers to apply it as the <code>imported</code> source, preserving the embedded original</li>
+<li>optional 4D connected-component cleanup removes components below a physical volume or keeps the largest component per label and frame</li>
+</ul>
+<p>Grouped label-mask behavior:</p>
+<ul>
+<li>binary masks and single-label masks are treated as one group</li>
+<li>4D label masks are reduced to 3D labels by majority vote along time before vessel steps run</li>
+<li>connected-component cleanup runs per label value before labels are merged into groups</li>
+<li>grouped vessel masks use the skeleton connected-component filter mode; the default <code>hybrid</code> rule keeps every component above <code>max(min_cc_volume_mm3, cc_rel_min_ratio * largest_component_volume_mm3)</code></li>
+<li>label grouping, browser colors, and per-group preprocessing come from <code>configs/labels.json</code></li>
+<li>each group can apply its own Gaussian smoothing and morphology overrides before skeletonization</li>
+</ul>
+<p>PWV behavior:</p>
+<ul>
+<li>the <code>PWV Parameters</code> panel exposes groups, waveform key, spacing, transit-time method, foot definition, cross-correlation window, cross-correlation interpolation factor, cycle-wrap correction, smoothing, minimum valid planes, and plot colors. The GUI always runs PWV when <code>Compute PWV</code> is clicked; there is no enable checkbox. The default foot-to-foot waveform is <code>flowrate_mL_s</code></li>
+<li>when <code>Allow Cycle Wrap</code> is enabled, foot detection can follow an upstroke that starts at the end of the cardiac cycle and peaks in the first frames instead of pinning those planes to <code>0 ms</code></li>
+<li>group labels can be entered as symbolic names from <code>configs/labels.json</code> such as <code>AAO, ARCH, DAO</code> or as integer ids</li>
+<li>step buttons use the current GUI PWV values immediately after <code>Load</code>, <code>Clear Workspace</code>, or manual edits; the values do not write back to <code>configs/pwv.json</code> automatically</li>
+<li>the GUI shows one <code>Analysis</code> dock with a <code>Display</code> selector. <code>PWV</code> keeps the group selector and two-panel PWV plot. <code>Plane Curve</code> shows the selected plane's chosen metric across cardiac phase, including pressure-gradient and relative-pressure series when available. <code>Centerline Pressure</code> shows the selected path's current relative-pressure profile plus its per-phase pressure drop. <code>Internal Consistency</code> shows the selected path or plane's path-level and branch-level internal consistency</li>
+<li>PWV planes appear in the browser as one grouped item named <code>PWV planes</code>; the GUI does not list every PWV plane separately</li>
+</ul>
+<h2 id="video-export">Video Export<a class="headerlink" href="#video-export" title="Permanent link">&para;</a></h2>
+<p>Use <code>Export &gt; Export Videos...</code> for interactive offline export.</p>
+<ul>
+<li>choose an output directory</li>
+<li>select any combination of <code>plane</code>, <code>wss</code>, <code>tke</code>, <code>pg</code>, and <code>streamlines</code></li>
+<li><code>plane</code> is checked by default</li>
+<li>WSS, TKE, pressure-gradient, and relative-pressure exports compute missing derived data before rendering</li>
+<li>GUI video export reads shared camera and sizing defaults from <code>configs/video_exporting.json</code></li>
+<li>GUI live planes read <code>configs/planes.json -&gt; render for GUI plane styling</code></li>
+<li>GUI live WSS, TKE, pressure-gradient, relative-pressure, streamline, vorticity, Q-criterion, and swirling-strength objects read the corresponding render settings; the single live colorbar always uses the compact geometry and fonts from <code>configs/colorbar.json</code>, while per-metric <code>bar_cfg</code> remains the offline-video default</li>
+<li>streamline <code>clim</code> defaults to <code>auto</code>, which uses <code>0</code> to the P99 finite velocity inside the segmentation across all phases so isolated dual-VENC outliers do not flatten the useful range; enter two numeric limits for a fixed range, or enter <code>auto</code> in both fields to restore automatic scaling</li>
+<li>pressure-gradient and relative-pressure 3D layers are rendered on a smoothed pressure support surface</li>
+<li>the GUI keeps one shared scene colorbar for segmentation labels, WSS, TKE, pressure-gradient, relative-pressure, streamlines, vorticity, Q-criterion, and swirling strength; when you show or hide one of these layers, the colorbar is rebuilt for the active visible scalar layer instead of stacking multiple bars</li>
+<li>segmentation uses a categorical colorbar containing only label values present in the rendered surface, with label names instead of interpolated decimal ticks</li>
+<li>after loading into an empty 3D scene, the camera resets once to the first visible actor bounds; later time changes and scene-property edits preserve the current camera</li>
+<li>if <code>summary.json</code> already exists in the output directory, the GUI updates <code>videos</code>, <code>video_times_sec</code>, and adds <code>gui_video_export</code></li>
+</ul>
+<p><code>Run All</code> does not export videos automatically. Video export is a separate top-level menu action.</p>
+<h2 id="selection-browser-and-timeline">Selection, Browser, And Timeline<a class="headerlink" href="#selection-browser-and-timeline" title="Permanent link">&para;</a></h2>
+<ul>
+<li>the browser creates one top-level row per segmentation group and one <code>Global</code> row for non-grouped scene objects</li>
+<li>generated planes are grouped by their <code>path_index</code> under <code>Paths</code>; each path contains its path geometry, planes sorted by path distance, and any generated pathline below its plane</li>
+<li>manually added planes (<code>path_index=-1</code>) and planes whose path cannot be resolved stay under <code>Unbound Planes</code></li>
+<li>after vortex metrics are computed, the <code>Global</code> row includes <code>Vorticity Magnitude</code>, <code>Q-Criterion</code>, and <code>Swirling Strength</code> metric objects; each can be toggled independently</li>
+<li>the default layout gives the browser more width and reserves most of it for <code>Name</code>; <code>Kind</code> is a fixed narrow column with the complete type available as a tooltip, and visibility is controlled by the checkbox beside each name rather than a separate empty column</li>
+<li>checking or unchecking a group row shows or hides every object in that group; <code>Paths</code>, an individual <code>Path</code>, or a <code>Plane</code> row applies the same operation to its descendants</li>
+<li>right-clicking a <code>Path</code> offers show/hide for its contents and <code>Generate Pathlines for This Path</code>; right-clicking a <code>Plane</code> retains the single-plane and selected-plane pathline actions</li>
+<li>group title colors use <code>label_groups.&lt;group&gt;.browser_color</code> from <code>configs/labels.json</code>, with fallback colors for unmatched or single-label cases</li>
+<li>grouped objects keep stable internal data keys such as <code>smooth_path_aorta_systemic_branches_3</code>, <code>plane_aorta_systemic_branches_5</code>, and <code>pathline_aorta_systemic_branches_5</code>; the Browser uses <code>(group_name, path_index)</code> to present their relationship without changing those keys</li>
+<li>browser-visible names are intentionally shorter, for example <code>path 3</code>, <code>plane 5</code>, and <code>pathline 5</code></li>
+<li>right-clicking an individual grouped pathline in the browser opens <code>Set Pathline Color</code>, which changes only that pathline</li>
+<li>selecting a plane updates selection info, the ortho viewer, and the <code>Analysis</code> plane/path views</li>
+<li>selecting a path shows its segmentation owner in the lower-right <code>Path</code> panel (for example, <code>label=LBCT (id=7)</code>); this is the label selected by the segmentation filter and does not rename or edit the graph path</li>
+<li>the right-side dock initially shows <code>Segmentation</code>; its first <code>Source</code> section provides active-source switching, visibility, opacity, provenance, configuration, import, and save controls</li>
+<li><code>Analysis</code> initially uses <code>Plane Curve</code>, so selecting a plane immediately exposes its available time-resolved metric series</li>
+<li><code>Add Plane</code> creates a free plane at the current ortho cursor; it can be moved anywhere and is saved with <code>placement_mode=manual</code>, so reuse does not project it onto a path</li>
+<li><code>Edit Plane</code> enables a cyan center handle plus orange and yellow in-plane-axis handles; generated plane centers remain constrained to their path, while manual plane centers are unrestricted</li>
+<li>dragging either colored axis endpoint rotates the plane directly in the 3D view; there are no numeric <code>Rotate U</code> or <code>Rotate V</code> fields</li>
+<li>plane actors update during the drag, while ortho refresh, pathline regeneration, metric computation, and file writes wait until the interaction finishes</li>
+<li>releasing a plane handle recomputes only that plane and never starts missing WSS/TKE/pressure work; it updates the metric and plane JSON/H5 records, while the full pixelwise H5 is regenerated by <code>Calculate &amp;&amp; Save Metrics</code></li>
+<li>selecting a path shows path-level information and updates <code>Analysis -&gt; Internal Consistency</code></li>
+<li>the timeline controls time-resolved scene objects and ortho slices</li>
+<li>the timeline redraws 3D and ortho data while dragging, coalescing rapid changes to one update about every 30 ms; the final position is applied immediately on release</li>
+<li>playback uses a single-shot schedule, so slow VTK frames do not queue up; hidden dynamic layers are not rebuilt until they are shown again, which keeps WSS, TKE, pressure, streamlines, pathlines, and segmentation surfaces from reducing playback FPS unnecessarily</li>
+<li>the timeline shows rolling render time and effective FPS during playback; reduce the requested <code>ms</code> delay to test the current visible scene's maximum rate</li>
+<li>playback updates persistent pyqtgraph slice images, overlays, cursors, and the interactive colorbar without rebuilding three Matplotlib axes; the oblique plane, segmentation table, and analysis plot receive a full refresh once playback is paused</li>
+<li>dynamic actors and the shared scalar bar remain attached while cardiac phase changes; only mapper input data is replaced</li>
+</ul>
+<h2 id="ortho-viewer">Ortho Viewer<a class="headerlink" href="#ortho-viewer" title="Permanent link">&para;</a></h2>
+<p>The ortho viewer supports:</p>
+<ul>
+<li>flow components</li>
+<li>magnitude</li>
+<li>PC-MRA</li>
+<li>speed</li>
+<li>WSS</li>
+<li>TKE</li>
+<li>pressure gradient</li>
+<li>relative pressure</li>
+<li>a persistent interactive colorbar for every scalar source</li>
+<li>jump-to-plane-center behavior</li>
+</ul>
+<p>The three slice views are labeled <code>Axial (LR-AP)</code>, <code>Coronal (LR-FH)</code>, and <code>Sagittal (AP-FH)</code>. Their slider and voxel-coordinate labels use <code>LR</code>, <code>AP</code>, and <code>FH</code> in the same order as the normalized arrays.</p>
+<p>Slice interactions:</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left click or drag</td>
+<td>move the linked LR/AP/FH cursor</td>
+</tr>
+<tr>
+<td>wheel</td>
+<td>step the slice orthogonal to the hovered view</td>
+</tr>
+<tr>
+<td><code>Ctrl</code> + wheel</td>
+<td>zoom around the pointer</td>
+</tr>
+<tr>
+<td><code>Shift</code> + left drag</td>
+<td>pan one view</td>
+</tr>
+<tr>
+<td>middle drag</td>
+<td>adjust window width and level</td>
+</tr>
+<tr>
+<td>double-click</td>
+<td>expand one slice across the complete 2x2 view area or restore the four-panel layout</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>reset slice zoom and display range</td>
+</tr>
+<tr>
+<td>Left / Right</td>
+<td>step through cardiac phases while focus is in the ortho viewer</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>Overlay</code> slider changes the segmentation color overlay opacity immediately
+without changing the scalar image window/level.</p>
+<h2 id="external-segmentation-editor">External Segmentation Editor<a class="headerlink" href="#external-segmentation-editor" title="Permanent link">&para;</a></h2>
+<p>The optional SpatioTemporal Labeler is launched from the Segmentation dock. It receives <code>mag</code>, <code>flow_x</code>, <code>flow_y</code>, <code>flow_z</code>, <code>pcmra</code>, and the active label sequence as matching 4D NIfTI files. The case-specific exchange directory is reused on later opens, so Labeler can continue from its saved <code>segmentation.nii</code> instead of overwriting it. AutoFlow keeps the exchange process separate, blocks closing AutoFlow until Labeler exits, and imports the saved label only after its file timestamp changes.</p>
+<h2 id="when-to-use-the-gui">When To Use The GUI<a class="headerlink" href="#when-to-use-the-gui" title="Permanent link">&para;</a></h2>
+<p>Use the GUI when you need:</p>
+<ul>
+<li>interactive segmentation review or correction</li>
+<li>grouped visibility control for multi-label vessel workflows</li>
+<li>skeleton or graph editing in single-group cases</li>
+<li>path-constrained generated-plane movement, unrestricted manual-plane placement, two-axis 3D rotation, and automatic metric recomputation</li>
+<li>time navigation through 3D and ortho views</li>
+<li>interactive selection of which offline videos to export</li>
+</ul>
+<p>Use the CLI when you need:</p>
+<ul>
+<li>unattended batch processing</li>
+<li>repeated runs over many cases</li>
+<li>unattended or repeated offline video export pipelines</li>
+</ul>
+<h2 id="cmrrecon-comparison-popup">CMRRecon Comparison Popup<a class="headerlink" href="#cmrrecon-comparison-popup" title="Permanent link">&para;</a></h2>
+<p>Status: <code>Experimental</code></p>
+<p>The repository also includes a standalone comparison popup for paired <code>GT</code> and <code>VAA</code> H5 cases:</p>
+<ul>
+<li>entry file: <code>ztemp/cmrrecon_popup.py</code></li>
+<li>main code: <code>ztemp/cmrrecon_viewer.py</code></li>
+</ul>
+<p>Current popup behavior:</p>
+<ul>
+<li>case switching uses a drop-down selector plus <code>Prev</code> and <code>Next</code></li>
+<li>changing case loads data in a background thread instead of blocking the window</li>
+<li>a progress bar and status text show load progress while GT and VAA volumes are prepared</li>
+<li>display-only transforms include <code>Rotate 90 deg</code>, <code>Flip H</code>, and <code>Flip V</code></li>
+<li>the transform controls only affect the rendered preview and do not modify source data on disk</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../developer/testing/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 测试">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                测试
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cli/" class="md-footer__link md-footer__link--next" aria-label="下一页: CLI details">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                CLI details
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © AutoFlow contributors
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

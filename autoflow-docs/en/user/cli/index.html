@@ -1,0 +1,3041 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="面向 4D Flow MRI 的加载、分割、血流分析与质量控制文档">
+      
+      
+        <meta name="author" content="AutoFlow contributors">
+      
+      
+        <link rel="canonical" href="https://associatedprimeideal.github.io/docs/autoflow/en/user/cli/">
+      
+      
+        <link rel="prev" href="../gui/">
+      
+      
+        <link rel="next" href="../python-api/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CLI details - AutoFlow · 4D Flow MRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cli-guide" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="AutoFlow · 4D Flow MRI" class="md-header__button md-logo" aria-label="AutoFlow · 4D Flow MRI" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AutoFlow · 4D Flow MRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CLI details
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="teal"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="teal"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AssociatedPrimeIdeal/AutoFlow" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AssociatedPrimeIdeal/AutoFlow
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../zh/user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  中文
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../developer/architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开发者
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../gui/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AutoFlow · 4D Flow MRI" class="md-nav__button md-logo" aria-label="AutoFlow · 4D Flow MRI" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    AutoFlow · 4D Flow MRI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AssociatedPrimeIdeal/AutoFlow" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AssociatedPrimeIdeal/AutoFlow
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中文
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    中文
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/user-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    示例：主动脉 H5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/input-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    输入与输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example: Aorta H5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../input-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input & Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发者
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发者
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/feature-to-code-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能到代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/config-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/change-recipes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    修改配方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUI details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI details
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-first-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task-First Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task-First Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-one-h5-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run one H5 case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-dicom-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run a DICOM root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-and-export-plane-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import and export plane coordinates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-auto-segmentation-for-cases-without-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable auto segmentation for cases without segmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-auto-segmentation-streamline-videos-and-segmentation-nifti-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch auto segmentation, streamline videos, and segmentation NIfTI packaging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distance-based-planes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distance-based planes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#center-fixed-step-planes-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Center fixed-step planes (default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anchored-offset-planes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anchored-offset planes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opt-in-to-optional-computations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opt in to optional computations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-selected-offline-videos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export selected offline videos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter Tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameter Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-and-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input and output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-and-skip-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch and skip behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-and-background-phase-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading and background phase correction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plane-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plane generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pwv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PWV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skeleton-preprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skeleton preprocessing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamlines-and-pathline-styling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streamlines and pathline styling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto segmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video export
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outputs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/segmentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segmentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/planes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planes and metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/wss-tke-pressure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WSS, TKE and pressure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/streamlines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Streamlines and pathlines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/videos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-first-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task-First Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task-First Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-one-h5-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run one H5 case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-dicom-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run a DICOM root
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-and-export-plane-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import and export plane coordinates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-auto-segmentation-for-cases-without-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable auto segmentation for cases without segmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-auto-segmentation-streamline-videos-and-segmentation-nifti-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch auto segmentation, streamline videos, and segmentation NIfTI packaging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distance-based-planes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distance-based planes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#center-fixed-step-planes-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Center fixed-step planes (default)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anchored-offset-planes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anchored-offset planes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opt-in-to-optional-computations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opt in to optional computations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-selected-offline-videos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export selected offline videos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameter-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter Tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameter Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-and-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input and output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-and-skip-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch and skip behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-and-background-phase-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading and background phase correction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plane-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plane generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pwv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PWV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skeleton-preprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skeleton preprocessing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamlines-and-pathline-styling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streamlines and pathline styling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto segmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video export
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outputs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="cli-guide">CLI Guide<a class="headerlink" href="#cli-guide" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p><code>autoflow-run</code> is the main batch entry point. It is supported.</p>
+<p>Entry files:</p>
+<ul>
+<li><code>pyproject.toml</code></li>
+<li><code>autoflow/cli.py</code></li>
+<li><code>autoflow/api.py</code></li>
+<li><code>autoflow/processing.py</code></li>
+</ul>
+<h2 id="task-first-usage">Task-First Usage<a class="headerlink" href="#task-first-usage" title="Permanent link">&para;</a></h2>
+<h3 id="run-one-h5-case">Run one H5 case<a class="headerlink" href="#run-one-h5-case" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>autoflow-run<span class="w"> </span>./data/demo_data.h5<span class="w"> </span>--output-dir<span class="w"> </span>./results/demo
+</span></code></pre></div>
+<h3 id="run-a-dicom-root">Run a DICOM root<a class="headerlink" href="#run-a-dicom-root" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>autoflow-run<span class="w"> </span>/path/to/dicom_root<span class="w"> </span>--output-dir<span class="w"> </span>./results/dicom_batch
+</span></code></pre></div>
+<h3 id="import-and-export-plane-coordinates">Import and export plane coordinates<a class="headerlink" href="#import-and-export-plane-coordinates" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>autoflow-run<span class="w"> </span>./data/demo_data.h5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--output-dir<span class="w"> </span>./results/demo<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--import-planes<span class="w"> </span>./results/old_case/plane_positions.json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--plane-import-mode<span class="w"> </span>world<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--export-planes<span class="w"> </span>./results/transferred_planes.json
+</span></code></pre></div>
+<p>Use <code>world</code> only for cases registered in the same AutoFlow canonical world-mm frame. Use <code>local</code> for identical cropped geometry with different origins. Use <code>path_relative</code> for unregistered cases whose generated path groups and path ranks correspond; it maps each plane by fractional centerline distance and uses the target path tangent. <code>--reuse-planes</code> remains an alias for <code>--import-planes</code>.</p>
+<h3 id="enable-auto-segmentation-for-cases-without-segmentation">Enable auto segmentation for cases without segmentation<a class="headerlink" href="#enable-auto-segmentation-for-cases-without-segmentation" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>autoflow-run<span class="w"> </span>./data/demo_data.h5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--output-dir<span class="w"> </span>./results/demo<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--autoseg
+</span></code></pre></div>
+<h3 id="batch-auto-segmentation-streamline-videos-and-segmentation-nifti-packaging">Batch auto segmentation, streamline videos, and segmentation NIfTI packaging<a class="headerlink" href="#batch-auto-segmentation-streamline-videos-and-segmentation-nifti-packaging" title="Permanent link">&para;</a></h3>
+<p><code>segonly.sh</code> processes every H5/HDF5 file below <code>ROOT</code>, generates or refreshes
+the automatic segmentation, and exports a streamline video for each case. It
+passes <code>--skip-derived</code> and <code>--skip-plane-metrics</code> so WSS, TKE, pressure, and
+plane metrics are excluded; skeleton, graph, and plane generation remain in the
+current batch pipeline before video export. The per-case <code>summary.json</code> records
+the rendered video as <code>videos.streamlines</code>, and <code>_run_status.tsv</code> includes the
+same path in its <code>streamline_video</code> column. A missing streamline MP4 marks the
+case as failed. When all cases succeed, the script also writes
+<code>$OUTROOT/segmentation_nifti.zip</code>. The archive contains only
+<code>*_auto_segmentation.nii</code> and <code>*_auto_segmentation.nii.gz</code>; nnUNet feature-channel
+NIfTI files are excluded. Each file retains its path relative to <code>OUTROOT</code>.</p>
+<p>With the default <code>configs/video_exporting.json</code>, the output is
+<code>streamlines_rotate.mp4</code>; it is <code>streamlines_video.mp4</code> when dynamic rotation is
+disabled in that config.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">ROOT</span><span class="o">=</span>/path/to/h5_cases<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">OUTROOT</span><span class="o">=</span>/path/to/results<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nv">SEGMENTATION_ZIP</span><span class="o">=</span>/path/to/segmentation_nifti.zip<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>./segonly.sh
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Environment variable</th>
+<th>Type</th>
+<th>Default</th>
+<th>Where configured</th>
+<th>Effect</th>
+<th>Code owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ROOT</code></td>
+<td>path</td>
+<td>script default</td>
+<td>environment</td>
+<td>source H5/HDF5 root scanned by <code>segonly.sh</code></td>
+<td><code>segonly.sh</code></td>
+</tr>
+<tr>
+<td><code>OUTROOT</code></td>
+<td>path</td>
+<td>script default</td>
+<td>environment</td>
+<td>per-case output root and the base for archived relative paths</td>
+<td><code>segonly.sh</code></td>
+</tr>
+<tr>
+<td><code>SEGMENTATION_ZIP</code></td>
+<td>path</td>
+<td><code>$OUTROOT/segmentation_nifti.zip</code></td>
+<td>environment</td>
+<td>destination ZIP containing only automatic segmentation NIfTI outputs</td>
+<td><code>segonly.sh</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="distance-based-planes">Distance-based planes<a class="headerlink" href="#distance-based-planes" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>autoflow-run<span class="w"> </span>./data/demo_data.h5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--output-dir<span class="w"> </span>./results/demo<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--plane-mode<span class="w"> </span>distance<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--cross-section-dist<span class="w"> </span><span class="m">15</span>
+</span></code></pre></div>
+<h3 id="center-fixed-step-planes-default">Center fixed-step planes (default)<a class="headerlink" href="#center-fixed-step-planes-default" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>autoflow-run<span class="w"> </span>./data/demo_data.h5<span class="w"> </span>--output-dir<span class="w"> </span>./results/demo<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--plane-mode<span class="w"> </span>fixed_step<span class="w"> </span>--plane-anchor<span class="w"> </span>center<span class="w"> </span>--plane-direction<span class="w"> </span>both<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--plane-count<span class="w"> </span><span class="m">3</span><span class="w"> </span>--plane-spacing-mode<span class="w"> </span>fraction<span class="w"> </span>--plane-spacing-ratio<span class="w"> </span><span class="m">0</span>.25
+</span></code></pre></div>
+<p>The default segmentation filter assigns each graph path an owner label from
+topology-aware contiguous label runs and clips plane placement and metrics to
+that label. Use <code>--no-segmentation-filter</code> for a binary-mask workflow.</p>
+<h3 id="anchored-offset-planes">Anchored-offset planes<a class="headerlink" href="#anchored-offset-planes" title="Permanent link">&para;</a></h3>
+<p>When the path meets a graph junction, placement begins at that junction and proceeds along the branch. <code>--plane-anchor</code> is used only for a path without a junction.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>autoflow-run<span class="w"> </span>./data/demo_data.h5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--output-dir<span class="w"> </span>./results/demo<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>--plane-mode<span class="w"> </span>anchored_offset<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>--plane-count<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>--cross-section-dist<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span>--plane-anchor<span class="w"> </span>end<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span>--plane-offset-mm<span class="w"> </span><span class="m">10</span>
+</span></code></pre></div>
+<h3 id="opt-in-to-optional-computations">Opt in to optional computations<a class="headerlink" href="#opt-in-to-optional-computations" title="Permanent link">&para;</a></h3>
+<p>Phase unwrapping is opt-in and disabled by default. For single-VENC wrapped phase:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>autoflow-run<span class="w"> </span>./data/demo_data.h5<span class="w"> </span>--phase-unwrap-method<span class="w"> </span>lap4D<span class="w"> </span>--phase-unwrap-device<span class="w"> </span>auto
+</span></code></pre></div>
+<p>Choose <code>gc3D</code>, <code>lap4D</code>, or <code>nprs</code>; add <code>--phase-unwrap-mask all</code> to ignore the segmentation mask. <code>lap4D</code> uses CUDA FFT, <code>nprs</code> uses CUDA for Fourier resampling while retaining the CPU reliability solver, and <code>gc3D</code> uses CUDA only for graph construction. Dual-VENC inputs report a skip.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>autoflow-run<span class="w"> </span>./data/demo_data.h5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>--output-dir<span class="w"> </span>./results/demo<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>--with<span class="w"> </span>pwv,wss,vortex
+</span></code></pre></div>
+<h3 id="export-selected-offline-videos">Export selected offline videos<a class="headerlink" href="#export-selected-offline-videos" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>autoflow-run<span class="w"> </span>./data/demo_data.h5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>--output-dir<span class="w"> </span>./results/demo<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>--with<span class="w"> </span>wss,pg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--video<span class="w"> </span>plane,wss,pg
+</span></code></pre></div>
+<p>Plane videos annotate <code>planeidx=&lt;index&gt;</code> by default so the rendered label matches <code>plane_index</code> in the saved plane outputs. Change the plane-video label prefix, font size, text color, and label background styling in <code>configs/video_exporting.json -&gt; plane_video.label</code>.</p>
+<h2 id="execution-order">Execution Order<a class="headerlink" href="#execution-order" title="Permanent link">&para;</a></h2>
+<p>The current batch order in <code>process_single()</code> is:</p>
+<ol>
+<li><code>load_data</code></li>
+<li>optional CLI auto segmentation when <code>--autoseg</code> is enabled and no segmentation is loaded; for H5 inputs the predicted <code>segmask</code> is cached back into the source file; <code>--segmentation-only</code> stops successfully here</li>
+<li><code>Generate Skeleton</code></li>
+<li><code>Generate Graph</code></li>
+<li><code>Generate Planes</code></li>
+<li>plane metrics; requested WSS, TKE, or pressure fields are prepared once before plane sampling so their summaries can be attached</li>
+<li>optional PWV plus export of the already computed derived metrics selected by <code>--with</code></li>
+<li>optional video export selected by <code>--video</code></li>
+</ol>
+<p>Behavior details:</p>
+<ul>
+<li>if segmentation is missing, segmentation-dependent steps are skipped</li>
+<li>if <code>--autoseg</code> is enabled and the case has no segmentation, auto segmentation runs before skeleton and graph steps; H5 inputs then reuse the cached <code>segmask</code> on later runs</li>
+<li>CLI auto segmentation prints backend/model/device details, stage progress, and per-case timing for inference plus source H5 cache write when the input is H5</li>
+<li><code>tools/benchmark_pipeline.py</code> defaults to the registered DV H5 validation case, cold-start correction/segmentation semantics, and no source-H5 writes; use <code>--autoseg-folds all</code> to benchmark a future 5-fold ensemble</li>
+<li>directory inputs scan only top-level H5/HDF5 files, so nested output folders such as <code>autoflow_out/</code> are skipped during H5 batch discovery</li>
+<li>default CLI runs only through plane metrics</li>
+<li><code>--with pwv,wss,tke,pg,vortex</code> enables one or more optional computations</li>
+<li>WSS, TKE, and pressure analysis are computed independently; requesting <code>pg</code> alone does not also compute WSS or TKE</li>
+<li>plane metrics reuse requested derived fields prepared for the same run instead of recomputing them during the later pixelwise export</li>
+<li>if TKE is unavailable, WSS and pressure gradient still run when possible and TKE stays unavailable</li>
+<li>PWV requires <code>--with pwv</code>, at least one configured PWV group, and (for CLI/API batch compatibility) <code>configs/pwv.json -&gt; enabled=true</code></li>
+<li>each selected stage and each rendered video writes elapsed seconds into <code>summary.json</code></li>
+</ul>
+<h2 id="parameter-tables">Parameter Tables<a class="headerlink" href="#parameter-tables" title="Permanent link">&para;</a></h2>
+<h3 id="input-and-output">Input and output<a class="headerlink" href="#input-and-output" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>CLI flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Where configured</th>
+<th>Effect</th>
+<th>Code owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>inputs</code></td>
+<td>paths</td>
+<td>required</td>
+<td>command line</td>
+<td>files or directories to process</td>
+<td><code>autoflow/cli.py</code>, <code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>--output-dir</code></td>
+<td>path</td>
+<td><code>./results</code></td>
+<td><code>AutoFlowConfig.output_dir</code></td>
+<td>root output directory</td>
+<td><code>autoflow/api.py</code></td>
+</tr>
+<tr>
+<td><code>--config-dir</code></td>
+<td>path</td>
+<td>repo <code>configs/</code> when present</td>
+<td>command line</td>
+<td>load per-module JSON defaults</td>
+<td><code>autoflow/config.py</code></td>
+</tr>
+<tr>
+<td><code>--import-planes</code> / <code>--reuse-planes</code></td>
+<td>path</td>
+<td>empty</td>
+<td>command line or <code>AutoFlowConfig.reuse_planes</code></td>
+<td>import saved plane coordinates; a directory resolves per-case files</td>
+<td><code>autoflow/plane_io.py</code></td>
+</tr>
+<tr>
+<td><code>--plane-import-mode</code></td>
+<td>choice</td>
+<td><code>world</code></td>
+<td>command line or <code>AutoFlowConfig.plane_import_mode</code></td>
+<td>choose <code>world</code>, <code>local</code>, or <code>path_relative</code> cross-case mapping</td>
+<td><code>autoflow/plane_io.py</code></td>
+</tr>
+<tr>
+<td><code>--export-planes</code></td>
+<td>path</td>
+<td>empty</td>
+<td>command line or <code>AutoFlowConfig.export_planes</code></td>
+<td>write an additional plane-coordinate JSON; use a directory for multi-case runs</td>
+<td><code>autoflow/processing.py</code>, <code>autoflow/api.py</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="batch-and-skip-behavior">Batch and skip behavior<a class="headerlink" href="#batch-and-skip-behavior" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>CLI flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Where configured</th>
+<th>Effect</th>
+<th>Code owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--with</code></td>
+<td>csv</td>
+<td>empty</td>
+<td>command line</td>
+<td>opt in to <code>pwv</code>, <code>wss</code>, <code>tke</code>, <code>pg</code>, and/or <code>vortex</code></td>
+<td><code>autoflow/cli.py</code>, <code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>--skip-derived</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td><code>configs/batch.json</code></td>
+<td>remove WSS, TKE, and relative-pressure work from the requested set</td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>--skip-plane-metrics</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td><code>configs/batch.json</code></td>
+<td>skip plane metric export</td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>--single-thread</code></td>
+<td>bool</td>
+<td>multithread on</td>
+<td><code>configs/batch.json</code></td>
+<td>disable multithreaded plane metrics</td>
+<td><code>autoflow/core/pipeline.py</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="loading-and-background-phase-correction">Loading and background phase correction<a class="headerlink" href="#loading-and-background-phase-correction" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>CLI flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Where configured</th>
+<th>Effect</th>
+<th>Code owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--bgc</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td><code>configs/loader.json</code></td>
+<td>enable background phase correction; H5 inputs reuse or write a compatible <code>corr</code> cache</td>
+<td><code>autoflow/algorithms/phase_correction.py</code>, <code>autoflow/algorithms/data.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-method</code></td>
+<td>choice</td>
+<td><code>wrls_arto</code></td>
+<td><code>configs/loader.json</code></td>
+<td>choose <code>msac</code> or <code>wrls_arto</code></td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-fit-order</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td><code>configs/loader.json</code></td>
+<td>polynomial fit order for correction</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-threshold</code></td>
+<td>float</td>
+<td><code>0.1</code></td>
+<td><code>configs/loader.json</code></td>
+<td>MSAC venc-space threshold for the stationary-tissue mask</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-lambda</code></td>
+<td>float</td>
+<td><code>5.0</code></td>
+<td><code>configs/loader.json</code></td>
+<td>WRLS L1 regularization strength</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-magnitude-threshold</code></td>
+<td>float</td>
+<td><code>0.04</code></td>
+<td><code>configs/loader.json</code></td>
+<td>per-slice reference-magnitude fraction used to form WRLS candidates</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-mid-fov-fraction</code></td>
+<td>float</td>
+<td><code>0.5</code></td>
+<td><code>configs/loader.json</code></td>
+<td>middle in-plane FOV fraction used by the first-order initialization</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-mid-slice-fraction</code></td>
+<td>float</td>
+<td><code>0.65</code></td>
+<td><code>configs/loader.json</code></td>
+<td>middle through-plane fraction used by the initialization</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-arto-iterations</code></td>
+<td>int</td>
+<td><code>2</code></td>
+<td><code>configs/loader.json</code></td>
+<td>ARTO exclusion and refit count</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-tau</code></td>
+<td>float</td>
+<td><code>3.0</code></td>
+<td><code>configs/loader.json</code></td>
+<td>central-Gaussian inclusion width in standard deviations</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-delta</code></td>
+<td>float</td>
+<td><code>2.0</code></td>
+<td><code>configs/loader.json</code></td>
+<td>minimum side-Gaussian separation</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-central-probability</code></td>
+<td>float</td>
+<td><code>0.5</code></td>
+<td><code>configs/loader.json</code></td>
+<td>minimum central-Gaussian prior</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-fista-iterations</code></td>
+<td>int</td>
+<td><code>5000</code></td>
+<td><code>configs/loader.json</code></td>
+<td>maximum FISTA iterations per WRLS fit</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--bgc-wrls-gmm-iterations</code></td>
+<td>int</td>
+<td><code>1000</code></td>
+<td><code>configs/loader.json</code></td>
+<td>maximum GMM EM iterations per ARTO pass</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>--dual-venc-ratio1</code></td>
+<td>float</td>
+<td><code>0.0</code></td>
+<td><code>configs/loader.json</code></td>
+<td>first dual-venc alias window ratio for legacy <code>Nv=7</code> H5</td>
+<td><code>autoflow/algorithms/data.py</code></td>
+</tr>
+<tr>
+<td><code>--dual-venc-ratio2</code></td>
+<td>float</td>
+<td><code>0.0</code></td>
+<td><code>configs/loader.json</code></td>
+<td>second dual-venc alias window ratio for legacy <code>Nv=7</code> H5</td>
+<td><code>autoflow/algorithms/data.py</code></td>
+</tr>
+<tr>
+<td><code>--dicom-read-workers</code></td>
+<td>int</td>
+<td><code>1</code></td>
+<td><code>configs/loader.json</code></td>
+<td>DICOM read worker count; <code>0</code> means auto selection inside loader</td>
+<td><code>autoflow/algorithms/dicom.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>WRLS+ARTO automatically uses CUDA for its ARTO GMM stage when the installed PyTorch build reports a usable CUDA device. There is no background-correction device flag; unavailable or failed CUDA execution falls back to CPU.</p>
+<h3 id="plane-generation">Plane generation<a class="headerlink" href="#plane-generation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>CLI flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Where configured</th>
+<th>Effect</th>
+<th>Code owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--plane-mode</code></td>
+<td>string</td>
+<td><code>fixed_step</code></td>
+<td><code>configs/planes.json</code></td>
+<td>choose <code>uniform</code> or composable <code>fixed_step</code> placement (legacy modes remain accepted)</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--plane-count</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td><code>configs/planes.json</code></td>
+<td>requested planes; even symmetric counts omit center; <code>-1</code> fills positions that fit</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--cross-section-dist</code></td>
+<td>float mm</td>
+<td><code>5.0</code></td>
+<td><code>configs/planes.json</code></td>
+<td>fixed-step spacing in mm when distance spacing is selected</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--plane-spacing-mode</code></td>
+<td>string</td>
+<td><code>fraction</code></td>
+<td><code>configs/planes.json</code></td>
+<td><code>distance</code> or <code>fraction</code> of the usable centerline</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--plane-spacing-ratio</code></td>
+<td>float</td>
+<td><code>0.25</code></td>
+<td><code>configs/planes.json</code></td>
+<td>fractional fixed-step spacing</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--plane-anchor</code></td>
+<td>string</td>
+<td><code>center</code></td>
+<td><code>configs/planes.json</code></td>
+<td><code>start</code>, <code>center</code>, <code>end</code>, or <code>junction</code></td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--plane-direction</code></td>
+<td>string</td>
+<td><code>both</code></td>
+<td><code>configs/planes.json</code></td>
+<td><code>toward_start</code>, <code>toward_end</code>, or <code>both</code></td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--segmentation-filter</code> / <code>--no-segmentation-filter</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td><code>configs/planes.json</code></td>
+<td>enable/disable topology-aware path and metric filtering</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--start-dist</code></td>
+<td>float mm</td>
+<td><code>0.0</code> (fixed-step)</td>
+<td><code>configs/planes.json</code></td>
+<td>advanced trim from path start before placement</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--end-dist</code></td>
+<td>float mm</td>
+<td><code>0.0</code></td>
+<td><code>configs/planes.json</code></td>
+<td>stop offset near path end</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--plane-offset-mm</code></td>
+<td>float mm</td>
+<td><code>5.0</code></td>
+<td><code>configs/planes.json</code></td>
+<td>first offset from the graph junction in anchored-offset mode</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>--plane-by-distance</code></td>
+<td>bool</td>
+<td>unset</td>
+<td>CLI compatibility flag</td>
+<td>deprecated alias for <code>--plane-mode distance</code></td>
+<td><code>autoflow/cli.py</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="pwv">PWV<a class="headerlink" href="#pwv" title="Permanent link">&para;</a></h3>
+<p>PWV is opt-in from the CLI and still uses <code>configs/pwv.json</code> for PWV group definitions.</p>
+<ul>
+<li>pass <code>--with pwv</code></li>
+<li>enable it in <code>configs/pwv.json</code></li>
+<li>define one or more PWV groups in <code>configs/pwv.json -&gt; groups</code></li>
+</ul>
+<p>WSS, TKE, and pressure-analysis compute defaults are now split by metric:</p>
+<ul>
+<li><code>configs/fluid.json</code> for shared fluid properties such as <code>rho</code> and <code>viscosity</code></li>
+<li><code>configs/wss.json</code> for WSS computation</li>
+<li><code>configs/tke.json</code> for TKE density</li>
+<li><code>configs/pressure_gradient.json</code> for pressure-gradient estimation, relative-pressure reconstruction, and centerline-pressure settings</li>
+<li><code>configs/vortex.json</code> for vorticity, Q-criterion, and swirling-strength smoothing and support erosion</li>
+<li><code>configs/planes.json</code> for plane render styling</li>
+<li><code>configs/wss.json</code>, <code>configs/tke.json</code>, <code>configs/pressure_gradient.json</code>, and <code>configs/streamlines.json</code> for metric-specific render ranges and optional colorbars</li>
+<li><code>configs/pathlines.json</code> for GUI-only pathline launch and rendering defaults; the CLI still does not export pathlines</li>
+<li><code>configs/video_exporting.json</code> for shared video controls such as <code>window_size</code>, <code>rotate_dynamic_video</code>, and camera behavior</li>
+</ul>
+<h3 id="skeleton-preprocessing">Skeleton preprocessing<a class="headerlink" href="#skeleton-preprocessing" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>CLI flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Where configured</th>
+<th>Effect</th>
+<th>Code owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--remove-small-cc</code></td>
+<td>bool</td>
+<td><code>True</code> in config defaults</td>
+<td><code>configs/skeleton.json</code></td>
+<td>remove small connected components before skeletonization</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+<tr>
+<td><code>--separate-special-label-contacts</code> / <code>--no-separate-special-label-contacts</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td><code>configs/skeleton.json</code></td>
+<td>enable/disable contact separation for the configured special labels (default: <code>RBCT</code>, <code>CCA</code>, <code>LBCT</code>)</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+<tr>
+<td><code>--min-cc-volume</code></td>
+<td>float mm^3</td>
+<td><code>50.0</code></td>
+<td><code>configs/skeleton.json</code></td>
+<td>component-volume threshold</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+<tr>
+<td><code>--cc-filter-mode</code></td>
+<td>string</td>
+<td><code>hybrid</code></td>
+<td><code>configs/skeleton.json</code></td>
+<td>choose <code>absolute</code>, <code>relative</code>, <code>hybrid</code>, or <code>largest</code> component filtering</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+<tr>
+<td><code>--cc-rel-min-ratio</code></td>
+<td>float</td>
+<td><code>0.01</code></td>
+<td><code>configs/skeleton.json</code></td>
+<td>relative threshold against the largest component for <code>relative</code> and <code>hybrid</code> filtering</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="streamlines-and-pathline-styling">Streamlines and pathline styling<a class="headerlink" href="#streamlines-and-pathline-styling" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>CLI flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Where configured</th>
+<th>Effect</th>
+<th>Code owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--seed-ratio</code></td>
+<td>float</td>
+<td><code>0.02</code></td>
+<td><code>configs/streamlines.json</code></td>
+<td>streamline seed density</td>
+<td><code>autoflow/algorithms/streamlines.py</code></td>
+</tr>
+<tr>
+<td><code>--tube-radius</code></td>
+<td>float</td>
+<td><code>0.25</code></td>
+<td><code>configs/streamlines.json</code></td>
+<td>streamline tube radius in mm</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--pressure-method</code></td>
+<td>string</td>
+<td><code>least_squares</code></td>
+<td><code>configs/pressure_gradient.json</code></td>
+<td>choose <code>least_squares</code> or <code>ppe</code> relative-pressure reconstruction; both use SciPy sparse solvers</td>
+<td><code>autoflow/algorithms/metrics.py</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="auto-segmentation">Auto segmentation<a class="headerlink" href="#auto-segmentation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>CLI flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Where configured</th>
+<th>Effect</th>
+<th>Code owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--autoseg</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>command line</td>
+<td>run auto segmentation only when the loaded case has no segmentation</td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>--autoseg-backend</code></td>
+<td>string</td>
+<td><code>nnUNet4D</code> in <code>configs/segmentation.json</code></td>
+<td><code>AutoFlowConfig</code></td>
+<td>select <code>nnUNet4D</code> temporal or <code>nnUNet</code> static automatic segmentation</td>
+<td><code>autoflow/algorithms/segmentation.py</code></td>
+</tr>
+<tr>
+<td><code>--autoseg-model</code></td>
+<td>path</td>
+<td>Dataset7020 <code>.sh</code> in <code>configs/segmentation.json</code></td>
+<td><code>AutoFlowConfig</code></td>
+<td>override the 4D model folder or orchestration script; static <code>nnUNet</code> accepts a model folder</td>
+<td><code>autoflow/algorithms/segmentation.py</code></td>
+</tr>
+<tr>
+<td><code>--autoseg-checkpoint</code></td>
+<td>string</td>
+<td><code>checkpoint_final.pth</code></td>
+<td><code>AutoFlowConfig</code></td>
+<td>choose nnUNet checkpoint</td>
+<td><code>autoflow/algorithms/segmentation.py</code></td>
+</tr>
+<tr>
+<td><code>--autoseg-folds</code></td>
+<td>string</td>
+<td><code>single</code></td>
+<td><code>AutoFlowConfig</code></td>
+<td>choose <code>single</code>, <code>all</code>/<code>ensemble</code>, or explicit fold IDs such as <code>0,1,2,3,4</code></td>
+<td><code>autoflow/algorithms/segmentation.py</code></td>
+</tr>
+<tr>
+<td><code>--autoseg-device</code></td>
+<td>string</td>
+<td><code>auto</code></td>
+<td><code>AutoFlowConfig</code></td>
+<td>choose <code>auto</code>, <code>cpu</code>, or <code>cuda</code></td>
+<td><code>autoflow/algorithms/segmentation.py</code></td>
+</tr>
+<tr>
+<td><code>--autoseg-label-map</code></td>
+<td>JSON string</td>
+<td>empty</td>
+<td><code>AutoFlowConfig</code></td>
+<td>remap predicted labels after inference</td>
+<td><code>autoflow/algorithms/segmentation.py</code></td>
+</tr>
+<tr>
+<td><code>--force-recompute-seg</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>command line</td>
+<td>ignore an AutoFlow-generated H5 segmentation cache and rerun automatic segmentation</td>
+<td><code>autoflow/algorithms/data.py</code>, <code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>--ignore-embedded-segmentation</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>command line</td>
+<td>ignore every embedded segmentation source for a cold start without changing the input H5</td>
+<td><code>autoflow/algorithms/data.py</code>, <code>autoflow/core/pipeline.py</code></td>
+</tr>
+<tr>
+<td><code>--no-cache-write</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>command line</td>
+<td>keep newly computed correction and automatic-segmentation caches out of the source H5; pair with <code>--ignore-embedded-segmentation</code> for read-only timing</td>
+<td><code>autoflow/algorithms/data.py</code>, <code>autoflow/processing.py</code>, <code>autoflow/cli.py</code></td>
+</tr>
+<tr>
+<td><code>--segmentation-only</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>command line</td>
+<td>stop after loading or generating segmentation; skip skeleton, planes, metrics, and videos</td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note:</p>
+<ul>
+<li>the CLI currently takes these auto-segmentation defaults from <code>AutoFlowConfig</code></li>
+<li>the GUI segmentation dialog uses the segmentation config bundle for its initial auto-segmentation fields</li>
+</ul>
+<h3 id="video-export">Video export<a class="headerlink" href="#video-export" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>CLI flag or config key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Where configured</th>
+<th>Effect</th>
+<th>Code owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--video</code></td>
+<td>csv</td>
+<td>empty</td>
+<td>command line</td>
+<td>export one or more of <code>plane</code>, <code>wss</code>, <code>tke</code>, <code>pg</code>, <code>streamlines</code></td>
+<td><code>autoflow/cli.py</code>, <code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>--fps</code></td>
+<td>int</td>
+<td><code>12</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>output frame rate</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--plane-rotation-frames</code></td>
+<td>int</td>
+<td><code>180</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>frame count for plane rotation video</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>window_size</code></td>
+<td>list[int, int]</td>
+<td><code>[1600, 1200]</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>output render size; use this instead of a Matplotlib-style <code>figsize</code></td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--camera-view</code></td>
+<td>string</td>
+<td><code>right</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>camera preset for dynamic videos</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--camera-distance-scale</code></td>
+<td>float</td>
+<td><code>1.5</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>scale camera distance</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--rotate-dynamic-video</code> / <code>--no-rotate-dynamic-video</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>rotate or keep fixed dynamic videos</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--dynamic-rotation-frames</code></td>
+<td>int</td>
+<td><code>180</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>dynamic rotation frame count</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--dynamic-time-repeat</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>repeat each time frame in dynamic videos</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--dynamic-rotation-elevation-deg</code></td>
+<td>float</td>
+<td><code>10.0</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>dynamic rotation elevation override</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--add-plane-idx</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>show or hide plane index labels in the plane video</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>--add-path-idx</code> / <code>--no-path-idx</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>annotate path indices in plane video</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>planes.render.default.plane_color</code></td>
+<td>string</td>
+<td><code>yellow</code></td>
+<td><code>configs/planes.json</code></td>
+<td>default plane color in the GUI</td>
+<td><code>autoflow/ui/app.py</code>, <code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>planes.render.default.plane_opacity</code></td>
+<td>float</td>
+<td><code>0.75</code></td>
+<td><code>configs/planes.json</code></td>
+<td>default plane opacity in the GUI</td>
+<td><code>autoflow/ui/app.py</code>, <code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video.label.prefix</code></td>
+<td>string</td>
+<td><code>planeidx=</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>plane-video index label prefix before the plane number</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video.label.font_size</code></td>
+<td>int</td>
+<td><code>28</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>plane-video index label font size</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video.label.text_color</code></td>
+<td>string</td>
+<td><code>black</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>plane-video index label text color</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video.label.shape_color</code></td>
+<td>string</td>
+<td><code>yellow</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>plane-video index label background color</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video.label.shape_opacity</code></td>
+<td>float</td>
+<td><code>0.85</code></td>
+<td><code>configs/video_exporting.json</code></td>
+<td>plane-video index label background opacity</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>wss.render.show_scalar_bar</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td><code>configs/wss.json</code></td>
+<td>show or hide the WSS colorbar in GUI and exported videos</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>tke.render.show_scalar_bar</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td><code>configs/tke.json</code></td>
+<td>show or hide the TKE colorbar in GUI and exported videos</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>pressure_gradient.render.clim</code></td>
+<td>list[float, float] or <code>null</code></td>
+<td><code>null</code></td>
+<td><code>configs/pressure_gradient.json</code></td>
+<td>explicit pressure-gradient display range; <code>null</code> keeps the auto range</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>pressure_gradient.render.show_scalar_bar</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td><code>configs/pressure_gradient.json</code></td>
+<td>show or hide the pressure-gradient colorbar in GUI and exported videos</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>pressure_gradient.render.relative_pressure_clim</code></td>
+<td>list[float, float] or <code>null</code></td>
+<td><code>null</code></td>
+<td><code>configs/pressure_gradient.json</code></td>
+<td>explicit relative-pressure display range; <code>null</code> keeps the symmetric auto range</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>pressure_gradient.render.relative_pressure_show_scalar_bar</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td><code>configs/pressure_gradient.json</code></td>
+<td>show or hide the relative-pressure colorbar in GUI and exported videos</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>streamlines.render.clim</code></td>
+<td>list[float, float] or <code>null</code></td>
+<td><code>null</code></td>
+<td><code>configs/streamlines.json</code></td>
+<td>explicit streamline velocity range; <code>null</code> uses <code>0</code> to the all-phase P99 velocity inside the segmentation</td>
+<td><code>autoflow/algorithms/streamlines.py</code>, <code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>streamlines.render.show_scalar_bar</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td><code>configs/streamlines.json</code></td>
+<td>show or hide the streamline colorbar in GUI and exported videos</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
+<p>Typical CLI outputs are documented in <a href="../outputs/">Outputs</a>.</p>
+<h2 id="code-references">Code References<a class="headerlink" href="#code-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>parser: <code>autoflow/cli.py</code></li>
+<li>public config and API: <code>autoflow/api.py</code></li>
+<li>batch orchestration: <code>autoflow/processing.py</code></li>
+<li>pipeline steps: <code>autoflow/core/pipeline.py</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../gui/" class="md-footer__link md-footer__link--prev" aria-label="上一页: GUI details">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                GUI details
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../python-api/" class="md-footer__link md-footer__link--next" aria-label="下一页: Python API details">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Python API details
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © AutoFlow contributors
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

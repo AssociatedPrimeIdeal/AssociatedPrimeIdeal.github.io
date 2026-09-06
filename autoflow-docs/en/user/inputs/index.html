@@ -1,0 +1,1873 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="面向 4D Flow MRI 的加载、分割、血流分析与质量控制文档">
+      
+      
+        <meta name="author" content="AutoFlow contributors">
+      
+      
+        <link rel="canonical" href="https://associatedprimeideal.github.io/docs/autoflow/en/user/inputs/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Inputs - AutoFlow · 4D Flow MRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#inputs" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="AutoFlow · 4D Flow MRI" class="md-header__button md-logo" aria-label="AutoFlow · 4D Flow MRI" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AutoFlow · 4D Flow MRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inputs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="teal"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="teal"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AssociatedPrimeIdeal/AutoFlow" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AssociatedPrimeIdeal/AutoFlow
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../zh/user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  中文
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../developer/architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开发者
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../gui/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AutoFlow · 4D Flow MRI" class="md-nav__button md-logo" aria-label="AutoFlow · 4D Flow MRI" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    AutoFlow · 4D Flow MRI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AssociatedPrimeIdeal/AutoFlow" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AssociatedPrimeIdeal/AutoFlow
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中文
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    中文
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/user-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    示例：主动脉 H5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/input-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    输入与输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example: Aorta H5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../input-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input & Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发者
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发者
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/feature-to-code-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能到代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/config-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/change-recipes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    修改配方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUI details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/segmentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segmentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/planes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planes and metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/wss-tke-pressure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WSS, TKE and pressure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/streamlines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Streamlines and pathlines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/videos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        先从“软件需要什么”开始
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推荐的冷启动思路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        用 H5 浏览器快速检查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Inputs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-complex-h5-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy Complex H5 Variants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h5-layout-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H5 Layout Resolution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h5-background-correction-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H5 Background Correction Cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h5-orientation-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H5 Orientation Normalization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loader-result-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loader Result Contract
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Loader Result Contract">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coordinate-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coordinate contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capability-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capability flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dicom-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DICOM Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segmentation-expectations-by-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Segmentation Expectations By Input
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grouped-multi-label-segmentation-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grouped Multi-Label Segmentation Behavior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="inputs">Inputs<a class="headerlink" href="#inputs" title="Permanent link">&para;</a></h1>
+<h2 id="_1">先从“软件需要什么”开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>AutoFlow 不把一份 4D Flow 检查简单地当成一张图片。它至少需要四类信息：</p>
+<ol>
+<li><strong>解剖信号</strong>：<code>mag</code>，用于看血管和构造 PC-MRA。</li>
+<li><strong>速度编码</strong>：<code>flow</code>，或 legacy complex 数据中可转换得到的三方向速度。</li>
+<li><strong>空间几何</strong>：<code>Resolution</code>、<code>Origin</code> 和空间轴方向，否则 mm、法向量和压力梯度都可能错位。</li>
+<li><strong>时间与速度标尺</strong>：<code>RR</code>、时间帧数和 <code>VENC</code>，否则 phase 间隔和速度量级无法正确解释。</li>
+</ol>
+<p>分割 <code>seg</code> 是后续血管分析的空间范围；校正缓存 <code>corr</code> 是可复用的背景相位校正结果。<strong>二者都是可选输入，但不应被混为一谈</strong>：没有 <code>seg</code> 时要先准备分割，没有 <code>corr</code> 时可在冷启动流程中显式运行背景相位校正。</p>
+<h2 id="_2">推荐的冷启动思路<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>如果你要验证 AutoFlow 本身，而不是验证某次历史处理结果，请使用没有 <code>corr</code>、没有 <code>segmask</code>/<code>segmentation</code> 的工作副本：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>autoflow-run<span class="w"> </span>case_without_cache.h5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--output-dir<span class="w"> </span>./results/cold_start<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--bgc<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--autoseg
+</span></code></pre></div>
+<p>原始文件不要直接删除字段；先备份或复制工作副本。完整演示见<a href="../demo-case/">冷启动示例</a>。</p>
+<h2 id="h5">用 H5 浏览器快速检查<a class="headerlink" href="#h5" title="Permanent link">&para;</a></h2>
+<p>在 Python 中可以先不运行分析，只检查数据集名称和维度：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">&quot;case.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">show</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">h5py</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">handle</span><span class="o">.</span><span class="n">visititems</span><span class="p">(</span><span class="n">show</span><span class="p">)</span>
+</span></code></pre></div>
+<p>看到 <code>img_complex</code> 或 <code>img</code> 后，再核对它是否有 4 个通道；看到 <code>mag</code> 和 <code>flow</code> 时，核对 <code>flow</code> 最后一个维度是否为 3。不要只看文件扩展名判断格式。</p>
+<h2 id="supported-inputs">Supported Inputs<a class="headerlink" href="#supported-inputs" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Input type</th>
+<th>Supported</th>
+<th>Typical entry points</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>legacy complex H5</td>
+<td>yes</td>
+<td>CLI, GUI, Python API</td>
+<td>can provide segmentation and complex-derived sigma</td>
+</tr>
+<tr>
+<td>normalized H5 with <code>mag</code> and <code>flow</code></td>
+<td>yes</td>
+<td>CLI, GUI, Python API</td>
+<td>preferred normalized path</td>
+</tr>
+<tr>
+<td>normalized H5 with real-valued <code>img[..., 0:4]</code> or <code>img[0:4, ...]</code></td>
+<td>yes</td>
+<td>CLI, GUI, Python API</td>
+<td>interpreted as <code>mag + flow_xyz</code>; channel-first <code>img[0:4, ...]</code> is transposed during load</td>
+</tr>
+<tr>
+<td>direct DICOM directory</td>
+<td>yes</td>
+<td>CLI, GUI, Python API</td>
+<td>scanned into importable cases</td>
+</tr>
+<tr>
+<td>single DICOM file</td>
+<td>yes for case collection</td>
+<td>CLI</td>
+<td>resolved through case collection logic</td>
+</tr>
+</tbody>
+</table>
+<h2 id="legacy-complex-h5-variants">Legacy Complex H5 Variants<a class="headerlink" href="#legacy-complex-h5-variants" title="Permanent link">&para;</a></h2>
+<ul>
+<li>classic legacy complex H5 uses <code>img_complex[..., 0]</code> as the magnitude reference and <code>img_complex[..., 1:4]</code> as three velocity encodes</li>
+<li>complex-valued <code>img[..., 0:4]</code> is treated the same as <code>img_complex[..., 0:4]</code></li>
+<li>legacy dual-venc H5 with <code>img_complex.shape[-1] == 7</code> is supported when the file stores one reference plus six velocity encodes ordered by <code>VENCOrder</code></li>
+<li>for <code>Nv=7</code>, <code>VENC</code> contains two consecutive three-axis triplets corresponding to channel groups <code>1:4</code> and <code>4:7</code>; AutoFlow compares the triplets component-wise to identify the low-venc and high-venc groups, keeps each triplet paired with its source channels, applies background phase correction separately, runs dual-venc alias reconstruction, and publishes the reconstructed flow field as the final <code>flow</code></li>
+<li>the two <code>Nv=7</code> VENC triplets may be stored high-first or low-first; equal triplets or conflicting per-axis ordering are rejected because the low/high channel mapping would be ambiguous</li>
+<li>the final loader <code>venc</code> for <code>Nv=7</code> is the high-venc triplet</li>
+<li>dual-venc thresholds use <code>configs/loader.json -&gt; background_phase_correction -&gt; dual_venc_ratio1</code> and <code>dual_venc_ratio2</code>; when both remain <code>0.0</code>, AutoFlow derives them from the high/low venc ratio</li>
+</ul>
+<h2 id="h5-layout-resolution">H5 Layout Resolution<a class="headerlink" href="#h5-layout-resolution" title="Permanent link">&para;</a></h2>
+<ul>
+<li>AutoFlow first checks the H5 root for data keys</li>
+<li>if the root does not directly contain a supported layout, AutoFlow searches nested groups and uses the shallowest group that contains one supported case layout</li>
+<li>if one H5 file contains multiple recognizable 4D flow data groups at the same shallowest depth, AutoFlow treats them as separate input cases instead of forcing one winner</li>
+<li>each such case is identified by its H5 data-group path, for example <code>StudyA/Series1</code></li>
+<li>H5 dataset names are matched case-insensitively for loader keys such as <code>img_complex</code>, <code>img</code>, <code>mag</code>, <code>flow</code>, <code>segmask</code>, <code>segmentation</code>, <code>seg</code>, <code>Resolution</code>, <code>Origin</code>, <code>RR</code>, <code>VENC</code>, <code>SpatialOrder</code>, and <code>VENCOrder</code></li>
+<li><code>SpatialOrder</code> and <code>VENCOrder</code> can be stored either as a three-item text array such as <code>["FH", "RL", "PA"]</code> or as one comma-separated string such as <code>"FH,RL,PA"</code></li>
+<li><code>Resolution</code>, <code>Origin</code>, and <code>VENC</code> can be stored as flat triplets, singleton row vectors such as <code>[[1.2, 1.3, 1.4]]</code>, or singleton column vectors such as <code>[[50], [60], [70]]</code>; AutoFlow flattens these forms during load</li>
+<li>separators such as <code>_</code> and <code>-</code> are ignored during key matching, so names like <code>Spatial_Order</code> and <code>venc-order</code> are accepted</li>
+<li>when metadata like <code>Origin</code> is missing inside the selected case group, AutoFlow also checks the H5 root before falling back to defaults</li>
+</ul>
+<h2 id="h5-background-correction-cache">H5 Background Correction Cache<a class="headerlink" href="#h5-background-correction-cache" title="Permanent link">&para;</a></h2>
+<ul>
+<li>after the user selects an H5 case group, the GUI inspects that group before loading: an existing <code>corr</code> cache (or both <code>corr_low</code> and <code>corr_high</code> for dual-venc data) enables background correction and skips the correction prompt</li>
+<li>when the selected H5 case has no correction cache, the GUI first asks whether background correction should run for that load</li>
+<li>after loading, an embedded <code>segmask</code>, <code>segmentation</code>, or <code>seg</code> is activated without another prompt; when no segmentation is available, the GUI leaves the case unloaded from segmentation work and directs the user to the <code>Segmentation</code> stage's explicit <code>Run Automatic Segmentation</code> command</li>
+<li>consequently, a selected H5 group that already contains both correction and segmentation artifacts loads directly after case selection</li>
+<li>when background phase correction is disabled, the correction stage preserves the same normalized output values while bypassing its extra full-volume copy and synthetic complex conversion</li>
+<li>when background phase correction is enabled for an H5 input, AutoFlow first looks for a reusable <code>corr</code> dataset in the selected H5 data group, then at the file root</li>
+<li>if no compatible cache is found, AutoFlow runs the configured background-correction method and writes the resulting correction field back to the original H5 as <code>corr</code> when the file is writable</li>
+<li>WRLS + ARTO is the default; when an H5 correction cache is missing and correction is enabled, the GUI asks the user to select <code>MSAC</code> or <code>WRLS + ARTO</code></li>
+<li>WRLS+ARTO automatically runs its dominant ARTO GMM stage on CUDA when PyTorch and a usable CUDA device are available, with automatic CPU fallback and no device setting</li>
+<li>the GUI shows its standard progress dialog for enabled H5 background correction, including method-specific fitting and the H5 cache-write stage; closing the dialog only hides progress</li>
+<li>legacy dual-venc H5 stores separate correction caches as <code>corr_low</code> and <code>corr_high</code></li>
+<li>after a dual-venc correction is applied or reused, the GUI Content selector exposes both normalized low- and high-venc correction components (<code>Corr Low LR/AP/FH</code> and <code>Corr High LR/AP/FH</code>)</li>
+<li>when both dual-venc correction fields must be computed, the low- and high-venc correction passes run concurrently; H5 cache writes remain serialized</li>
+<li>a time-invariant correction cache may use shape <code>XYZ13</code>; AutoFlow broadcasts its singleton time dimension across every input time frame</li>
+<li>cached corrections are reused only when their shape, method, algorithm version, fit order, and method-specific parameters match the current load configuration</li>
+<li>cold MSAC correction caches the full-volume polynomial design matrix across its fixed random trials; the random seed, sampled indices, threshold, fit order, correction values, and cache format remain unchanged</li>
+<li>for multi-group H5 files, untagged root-level <code>corr</code> caches are not reused across different data-group paths</li>
+<li>if the H5 file cannot be opened for writing, loading still succeeds; AutoFlow simply skips writing the cache</li>
+</ul>
+<h2 id="h5-orientation-normalization">H5 Orientation Normalization<a class="headerlink" href="#h5-orientation-normalization" title="Permanent link">&para;</a></h2>
+<ul>
+<li>AutoFlow uses <code>SpatialOrder</code> together with <code>VENCOrder</code> or <code>VencOrder</code> for all supported H5 layouts, including legacy complex H5, normalized <code>mag</code> + <code>flow</code>, and real-valued <code>img[..., 0:4]</code> or <code>img[0:4, ...]</code>.</li>
+<li>for real-valued channel-first <code>img[0:4, ...]</code>, AutoFlow first transposes the raw array into internal <code>XYZT4</code> or <code>XYZ4</code> order before applying the usual spatial-axis and velocity-component normalization.</li>
+<li>loaded arrays are normalized to internal spatial order <code>LR, AP, FH</code> and velocity-component order <code>LR, AP, FH</code> before downstream processing.</li>
+<li>the GUI labels the normalized render axes and ortho views with <code>LR, AP, FH</code>; <code>spatial_order_raw</code> describes the source layout and must not be interpreted as the post-load array-axis order.</li>
+<li>opposite-direction labels such as <code>RL</code>, <code>PA</code>, and <code>HF</code> trigger spatial flips and velocity sign flips so the final <code>flow</code> stays physically consistent after reordering.</li>
+<li>for real-valued <code>img[..., 1:4]</code>, AutoFlow treats values near the full <code>[-pi, pi]</code> phase range as phase radians and rescales them to physical velocity with <code>flow / pi * VENC</code> during load.</li>
+<li>complex single-VENC H5 inputs retain canonical <code>phase_wrapped</code> for the optional phase-unwrapping stage; dual-VENC inputs retain low/high wrapped phases for audit but the workflow skips unwrapping.</li>
+<li>for real-valued H5 inputs, this normalization reorders spatial axes and flow components but does not rescale the stored magnitude values.</li>
+<li><code>LoadedCase.metadata["spatial_order_raw"]</code> and <code>LoadedCase.metadata["venc_order_raw"]</code> preserve the source labels read from the H5 file.</li>
+</ul>
+<p>Segmentation imports also accept NIfTI (<code>.nii</code> and <code>.nii.gz</code>) 3D or 4D label volumes. NIfTI files exported by the GUI use the loaded voxel spacing and origin in the affine and can be round-tripped through external editors.</p>
+<h2 id="loader-result-contract">Loader Result Contract<a class="headerlink" href="#loader-result-contract" title="Permanent link">&para;</a></h2>
+<p>AutoFlow normalizes loaders to <code>LoadedCase</code>.</p>
+<h3 id="required-fields">Required fields<a class="headerlink" href="#required-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mag</code></td>
+<td>magnitude volume</td>
+</tr>
+<tr>
+<td><code>flow</code></td>
+<td>velocity field</td>
+</tr>
+<tr>
+<td><code>resolution</code></td>
+<td>voxel spacing</td>
+</tr>
+<tr>
+<td><code>origin</code></td>
+<td>world-space origin</td>
+</tr>
+<tr>
+<td><code>venc</code></td>
+<td>velocity encoding</td>
+</tr>
+<tr>
+<td><code>rr</code></td>
+<td>RR interval</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optional-fields">Optional fields<a class="headerlink" href="#optional-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>segmentation</code></td>
+<td>embedded or loaded segmentation; can be binary, 3D label, or 4D label mask</td>
+</tr>
+<tr>
+<td><code>tke_array</code></td>
+<td>optional TKE array</td>
+</tr>
+<tr>
+<td><code>sigma</code></td>
+<td>optional complex-derived sigma</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>source metadata</td>
+</tr>
+<tr>
+<td><code>source_format</code></td>
+<td>loader source format label</td>
+</tr>
+<tr>
+<td><code>source_group</code></td>
+<td>selected H5 data-group path when applicable</td>
+</tr>
+<tr>
+<td><code>capabilities</code></td>
+<td>explicit downstream capability flags</td>
+</tr>
+</tbody>
+</table>
+<h3 id="coordinate-contract">Coordinate contract<a class="headerlink" href="#coordinate-contract" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>origin</code> is the world-space position of local physical coordinate <code>[0, 0, 0]</code>.</li>
+<li>For the current axis-aligned loader contract, voxel index <code>ijk</code> maps to local physical millimetres as <code>ijk * resolution</code> and to world space as <code>origin + ijk * resolution</code>.</li>
+<li>Workspace centerlines and <code>PlaneData.center</code> use local physical millimetres. VTK rendering and slicing add <code>origin</code> exactly once at the geometry boundary.</li>
+<li>Saved plane records use <code>center</code> for the local coordinate and <code>center_world</code> for the world coordinate.</li>
+<li>A restored workspace preserves its saved <code>origin</code>; changing only <code>origin</code> must not change sampled area, flow, WSS, TKE, or pressure values.</li>
+<li>A full direction-matrix/oblique affine is not yet part of <code>LoadedCase</code>; oblique DICOM remains a loader limitation rather than being approximated through <code>origin</code>.</li>
+</ul>
+<h3 id="capability-flags">Capability flags<a class="headerlink" href="#capability-flags" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>has_segmentation</code></td>
+<td>segmentation is available</td>
+</tr>
+<tr>
+<td><code>has_tke</code></td>
+<td>TKE is available</td>
+</tr>
+<tr>
+<td><code>has_complex_source</code></td>
+<td>complex-source information exists</td>
+</tr>
+<tr>
+<td><code>supports_wss</code></td>
+<td>WSS can be computed when segmentation exists</td>
+</tr>
+<tr>
+<td><code>supports_plane_metrics</code></td>
+<td>plane metrics can be computed when planes and segmentation exist</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dicom-notes">DICOM Notes<a class="headerlink" href="#dicom-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>direct DICOM loading is handled in <code>autoflow/algorithms/dicom.py</code></li>
+<li>Siemens signed phase velocity channels are rescaled to physical velocity during direct load</li>
+<li>textual through-plane direction tags such as <code>IN</code> or <code>TH</code> are interpreted as slice-select velocity components during case detection</li>
+<li>DICOM-derived mag and flow inputs do not reconstruct fake TKE</li>
+</ul>
+<h2 id="segmentation-expectations-by-input">Segmentation Expectations By Input<a class="headerlink" href="#segmentation-expectations-by-input" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Input type</th>
+<th>Embedded segmentation</th>
+<th>External segmentation</th>
+<th>Auto segmentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>legacy complex H5</td>
+<td>yes when present</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>normalized H5</td>
+<td>yes when present</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>direct DICOM</td>
+<td>usually no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="grouped-multi-label-segmentation-behavior">Grouped Multi-Label Segmentation Behavior<a class="headerlink" href="#grouped-multi-label-segmentation-behavior" title="Permanent link">&para;</a></h2>
+<ul>
+<li>downstream vessel steps accept binary masks, 3D label masks, and 4D label masks</li>
+<li>4D label masks are reduced to a 3D label volume by majority vote along the time axis before skeleton, graph, plane, or pathline generation</li>
+<li>connected-component cleanup runs per label value before groups are built</li>
+<li>label values are merged into groups using <code>configs/labels.json -&gt; label_map</code> and <code>label_groups</code></li>
+<li>each grouped vessel mask uses the skeleton connected-component cleanup rule instead of always collapsing to one largest component</li>
+<li>each group can override preprocessing through <code>configs/labels.json -&gt; label_groups.&lt;group&gt;.preprocess</code>, including Gaussian smoothing, dilation, erosion, opening, and closing</li>
+<li>when only one foreground label exists, AutoFlow falls back to one group so single-label segmentations still work with the same pipeline</li>
+</ul>
+<h2 id="code-references">Code References<a class="headerlink" href="#code-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>H5 loading: <code>autoflow/algorithms/data.py</code></li>
+<li>DICOM scan and load: <code>autoflow/algorithms/dicom.py</code></li>
+<li>pipeline load step: <code>autoflow/core/pipeline.py</code></li>
+<li>types: <code>autoflow/case_types.py</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © AutoFlow contributors
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

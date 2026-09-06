@@ -1,0 +1,2338 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="面向 4D Flow MRI 的加载、分割、血流分析与质量控制文档">
+      
+      
+        <meta name="author" content="AutoFlow contributors">
+      
+      
+        <link rel="canonical" href="https://associatedprimeideal.github.io/docs/autoflow/en/user/python-api/">
+      
+      
+        <link rel="prev" href="../cli/">
+      
+      
+        <link rel="next" href="../../features/segmentation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Python API details - AutoFlow · 4D Flow MRI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-api" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="AutoFlow · 4D Flow MRI" class="md-header__button md-logo" aria-label="AutoFlow · 4D Flow MRI" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AutoFlow · 4D Flow MRI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python API details
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="teal"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="teal"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AssociatedPrimeIdeal/AutoFlow" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AssociatedPrimeIdeal/AutoFlow
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../zh/user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  中文
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../developer/architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开发者
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../gui/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AutoFlow · 4D Flow MRI" class="md-nav__button md-logo" aria-label="AutoFlow · 4D Flow MRI" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    AutoFlow · 4D Flow MRI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AssociatedPrimeIdeal/AutoFlow" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AssociatedPrimeIdeal/AutoFlow
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中文
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    中文
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/user-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    示例：主动脉 H5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../zh/input-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    输入与输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example: Aorta H5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../input-output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input & Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发者
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发者
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/feature-to-code-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能到代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/config-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/change-recipes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    修改配方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developer/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GUI details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API details
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API details
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Use
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-one-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run one case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run a batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-a-workspace-from-config-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build a workspace from config defaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-pwv-through-config-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable PWV through config files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launch-the-gui-from-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launch the GUI from Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-config-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Config Fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-directory-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Directory Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-api-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current API Boundaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/segmentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Segmentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/planes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planes and metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/wss-tke-pressure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WSS, TKE and pressure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/streamlines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Streamlines and pathlines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/videos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Use
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-one-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run one case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run a batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-a-workspace-from-config-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build a workspace from config defaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-pwv-through-config-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable PWV through config files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launch-the-gui-from-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launch the GUI from Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-config-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Config Fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-directory-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config Directory Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-api-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current API Boundaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="python-api">Python API<a class="headerlink" href="#python-api" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>The public Python API is supported through <code>autoflow/__init__.py</code> and <code>autoflow/api.py</code>.</p>
+<p>Public entry points:</p>
+<ul>
+<li><code>AutoFlowConfig</code></li>
+<li><code>build_workspace()</code></li>
+<li><code>run_case()</code></li>
+<li><code>run_batch()</code></li>
+<li><code>launch_gui()</code></li>
+</ul>
+<h2 id="quick-use">Quick Use<a class="headerlink" href="#quick-use" title="Permanent link">&para;</a></h2>
+<h3 id="run-one-case">Run one case<a class="headerlink" href="#run-one-case" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">autoflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoFlowConfig</span><span class="p">,</span> <span class="n">run_case</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">config</span> <span class="o">=</span> <span class="n">AutoFlowConfig</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./results/demo&quot;</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">summary</span> <span class="o">=</span> <span class="n">run_case</span><span class="p">(</span><span class="s2">&quot;./data/demo_data.h5&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Phase unwrapping is opt-in:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">config</span> <span class="o">=</span> <span class="n">AutoFlowConfig</span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./results/demo&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">phase_unwrap_method</span><span class="o">=</span><span class="s2">&quot;lap4D&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">phase_unwrap_device</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>The returned summary includes <code>phase_unwrap</code> statistics and, when enabled, a <code>phase_unwrap_file</code> NPZ. Dual-VENC inputs report a skipped phase-unwrapping step.</p>
+<h3 id="run-a-batch">Run a batch<a class="headerlink" href="#run-a-batch" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">autoflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoFlowConfig</span><span class="p">,</span> <span class="n">run_batch</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">config</span> <span class="o">=</span> <span class="n">AutoFlowConfig</span><span class="p">(</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;./data/demo_data.h5&quot;</span><span class="p">],</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./results/demo&quot;</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">requested_metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pwv&quot;</span><span class="p">,</span> <span class="s2">&quot;wss&quot;</span><span class="p">],</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">requested_videos</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;plane&quot;</span><span class="p">,</span> <span class="s2">&quot;wss&quot;</span><span class="p">],</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">results</span><span class="p">,</span> <span class="n">last_case_out</span> <span class="o">=</span> <span class="n">run_batch</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="build-a-workspace-from-config-defaults">Build a workspace from config defaults<a class="headerlink" href="#build-a-workspace-from-config-defaults" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">autoflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoFlowConfig</span><span class="p">,</span> <span class="n">build_workspace</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">config</span> <span class="o">=</span> <span class="n">AutoFlowConfig</span><span class="o">.</span><span class="n">from_config_dir</span><span class="p">(</span><span class="s2">&quot;./configs&quot;</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">workspace</span> <span class="o">=</span> <span class="n">build_workspace</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="enable-pwv-through-config-files">Enable PWV through config files<a class="headerlink" href="#enable-pwv-through-config-files" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">autoflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoFlowConfig</span><span class="p">,</span> <span class="n">run_case</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">config</span> <span class="o">=</span> <span class="n">AutoFlowConfig</span><span class="o">.</span><span class="n">from_config_dir</span><span class="p">(</span><span class="s2">&quot;./configs&quot;</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">summary</span> <span class="o">=</span> <span class="n">run_case</span><span class="p">(</span><span class="s2">&quot;case.h5&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</span></code></pre></div>
+<p>PWV group definitions, timing method selection, and plotting defaults still come from <code>configs/pwv.json</code>, while <code>AutoFlowConfig.requested_metrics=["pwv"]</code> decides whether the batch run executes PWV.</p>
+<p>For the other derived metrics, <code>AutoFlowConfig.from_config_dir()</code> now reads:</p>
+<ul>
+<li><code>configs/fluid.json</code> for shared fluid properties such as <code>rho</code> and <code>viscosity</code></li>
+<li><code>configs/wss.json</code> for WSS compute parameters</li>
+<li><code>configs/tke.json</code> for TKE density</li>
+<li><code>configs/pressure_gradient.json</code> for pressure-gradient estimation, relative-pressure reconstruction, and centerline-pressure outputs</li>
+<li><code>configs/vortex.json</code> for vorticity, Q-criterion, and swirling-strength smoothing and support erosion</li>
+<li><code>configs/planes.json</code> for GUI plane styling, plus <code>configs/video_exporting.json</code> for plane-video styling</li>
+<li><code>configs/wss.json</code>, <code>configs/tke.json</code>, <code>configs/pressure_gradient.json</code>, and <code>configs/streamlines.json</code> for metric-specific render ranges and optional colorbars</li>
+<li><code>configs/pathlines.json</code> for GUI pathline launch, color, tube, and temporal-cache defaults</li>
+<li><code>configs/video_exporting.json</code> for shared video controls such as <code>window_size</code>, camera behavior, and rotation</li>
+</ul>
+<h3 id="launch-the-gui-from-python">Launch the GUI from Python<a class="headerlink" href="#launch-the-gui-from-python" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">autoflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">launch_gui</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">launch_gui</span><span class="p">(</span><span class="n">config_dir</span><span class="o">=</span><span class="s2">&quot;./configs&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="main-config-fields">Main Config Fields<a class="headerlink" href="#main-config-fields" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Effect</th>
+<th>Main code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>inputs</code></td>
+<td>list of paths</td>
+<td>empty</td>
+<td>batch inputs for <code>run_batch()</code></td>
+<td><code>autoflow/api.py</code></td>
+</tr>
+<tr>
+<td><code>output_dir</code></td>
+<td>path</td>
+<td><code>./results</code></td>
+<td>root output directory</td>
+<td><code>autoflow/api.py</code></td>
+</tr>
+<tr>
+<td><code>reuse_planes</code></td>
+<td>path</td>
+<td>empty</td>
+<td>import plane coordinates before metrics</td>
+<td><code>autoflow/plane_io.py</code>, <code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>plane_import_mode</code></td>
+<td>string</td>
+<td><code>world</code></td>
+<td>map imported planes by <code>world</code>, <code>local</code>, or <code>path_relative</code> coordinates</td>
+<td><code>autoflow/plane_io.py</code></td>
+</tr>
+<tr>
+<td><code>export_planes</code></td>
+<td>path</td>
+<td>empty</td>
+<td>write an additional coordinate JSON; multi-case runs require a directory</td>
+<td><code>autoflow/api.py</code>, <code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>requested_metrics</code></td>
+<td>list[str]</td>
+<td>empty</td>
+<td>opt in to <code>pwv</code>, <code>wss</code>, <code>tke</code>, <code>pg</code>, and/or <code>vortex</code></td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>skip_derived</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>remove requested WSS, TKE, pressure-gradient, relative-pressure, and centerline-pressure work</td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>pressure_method</code></td>
+<td>string</td>
+<td><code>least_squares</code></td>
+<td>choose <code>least_squares</code> or <code>ppe</code> relative-pressure reconstruction; large least-squares systems use AMG-preconditioned CG when available</td>
+<td><code>autoflow/algorithms/metrics.py</code></td>
+</tr>
+<tr>
+<td><code>skip_plane_metrics</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>skip plane metrics</td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_correction</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>enable loader correction; H5 inputs reuse or write a compatible <code>corr</code> cache</td>
+<td><code>autoflow/algorithms/data.py</code>, <code>autoflow/algorithms/dicom.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_method</code></td>
+<td>string</td>
+<td><code>wrls_arto</code></td>
+<td>choose <code>msac</code> or <code>wrls_arto</code></td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_corr_fit_order</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td>polynomial fit order for the selected correction method</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_threshold</code></td>
+<td>float</td>
+<td><code>0.1</code></td>
+<td>MSAC stationary-tissue threshold in venc units</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_lambda</code></td>
+<td>float</td>
+<td><code>5.0</code></td>
+<td>WRLS L1 regularization strength</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_magnitude_threshold</code></td>
+<td>float</td>
+<td><code>0.04</code></td>
+<td>per-slice reference-magnitude fraction for WRLS candidates</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_mid_fov_fraction</code></td>
+<td>float</td>
+<td><code>0.5</code></td>
+<td>middle in-plane FOV fraction used for WRLS initialization</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_mid_slice_fraction</code></td>
+<td>float</td>
+<td><code>0.65</code></td>
+<td>middle through-plane fraction used for WRLS initialization</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_arto_iterations</code></td>
+<td>int</td>
+<td><code>2</code></td>
+<td>ARTO exclusion and refit count</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_tau</code></td>
+<td>float</td>
+<td><code>3.0</code></td>
+<td>central-Gaussian inclusion width</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_delta</code></td>
+<td>float</td>
+<td><code>2.0</code></td>
+<td>minimum side-Gaussian separation</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_central_probability</code></td>
+<td>float</td>
+<td><code>0.5</code></td>
+<td>minimum central-Gaussian prior</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_fista_iterations</code></td>
+<td>int</td>
+<td><code>5000</code></td>
+<td>maximum FISTA iterations per WRLS fit</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_wrls_gmm_iterations</code></td>
+<td>int</td>
+<td><code>1000</code></td>
+<td>maximum GMM EM iterations per ARTO pass</td>
+<td><code>autoflow/algorithms/phase_correction.py</code></td>
+</tr>
+<tr>
+<td><code>dual_venc_ratio1</code></td>
+<td>float</td>
+<td><code>0.0</code></td>
+<td>first dual-venc alias window ratio for legacy <code>Nv=7</code> H5</td>
+<td><code>autoflow/algorithms/data.py</code></td>
+</tr>
+<tr>
+<td><code>dual_venc_ratio2</code></td>
+<td>float</td>
+<td><code>0.0</code></td>
+<td>second dual-venc alias window ratio for legacy <code>Nv=7</code> H5</td>
+<td><code>autoflow/algorithms/data.py</code></td>
+</tr>
+<tr>
+<td><code>plane_mode</code></td>
+<td>string</td>
+<td><code>fixed_step</code></td>
+<td><code>uniform</code> distributes planes over a path; <code>fixed_step</code> composes anchor, direction, and spacing</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>plane_count</code></td>
+<td>int</td>
+<td><code>3</code></td>
+<td>requested planes; symmetric even counts omit center; <code>-1</code> fills positions that fit</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>cross_section_dist</code></td>
+<td>float</td>
+<td><code>5.0</code></td>
+<td>fixed-step spacing in mm when <code>plane_spacing_mode="distance"</code></td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>plane_spacing_mode</code></td>
+<td>string</td>
+<td><code>fraction</code></td>
+<td>interpret spacing as physical mm (<code>distance</code>) or path-length fraction</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>plane_spacing_ratio</code></td>
+<td>float</td>
+<td><code>0.25</code></td>
+<td>fractional fixed-step spacing</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>plane_direction</code></td>
+<td>string</td>
+<td><code>both</code></td>
+<td><code>toward_start</code>, <code>toward_end</code>, or <code>both</code> from the anchor</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>segmentation_filter</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td>select a topology-aware owner label, crop placement to it, and filter plane metrics to it</td>
+<td><code>autoflow/algorithms/planes.py</code>, <code>autoflow/algorithms/metrics.py</code></td>
+</tr>
+<tr>
+<td><code>start_dist</code></td>
+<td>float</td>
+<td><code>0.0</code></td>
+<td>advanced trim from path start before placement</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>end_dist</code></td>
+<td>float</td>
+<td><code>0.0</code></td>
+<td>trim from path end before placement</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>plane_anchor</code></td>
+<td>string</td>
+<td><code>center</code></td>
+<td><code>start</code>, <code>center</code>, <code>end</code>, or <code>junction</code> placement anchor</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>plane_offset_mm</code></td>
+<td>float</td>
+<td><code>5.0</code></td>
+<td>first offset from the graph junction in anchored-offset mode</td>
+<td><code>autoflow/algorithms/planes.py</code></td>
+</tr>
+<tr>
+<td><code>remove_small_cc</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td>drop small components before skeletonization</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+<tr>
+<td><code>separate_special_label_contacts</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td>separate contacts only between configured special labels (default: <code>RBCT</code>, <code>CCA</code>, <code>LBCT</code>)</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+<tr>
+<td><code>special_contact_labels</code></td>
+<td>list[str]</td>
+<td><code>["RBCT", "CCA", "LBCT"]</code></td>
+<td>names of labels whose pairwise contacts are separated</td>
+<td><code>autoflow/core/models.py</code></td>
+</tr>
+<tr>
+<td><code>min_cc_volume</code></td>
+<td>float</td>
+<td><code>50.0</code></td>
+<td>absolute component threshold in mm^3</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+<tr>
+<td><code>cc_filter_mode</code></td>
+<td>string</td>
+<td><code>hybrid</code></td>
+<td>choose <code>absolute</code>, <code>relative</code>, <code>hybrid</code>, or <code>largest</code> component filtering</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+<tr>
+<td><code>cc_rel_min_ratio</code></td>
+<td>float</td>
+<td><code>0.01</code></td>
+<td>relative threshold against the largest component for <code>relative</code> and <code>hybrid</code> filtering</td>
+<td><code>autoflow/algorithms/preprocess.py</code></td>
+</tr>
+<tr>
+<td><code>seed_ratio</code></td>
+<td>float</td>
+<td><code>0.02</code></td>
+<td>streamline seed density</td>
+<td><code>autoflow/algorithms/streamlines.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_seed_ratio</code></td>
+<td>float</td>
+<td><code>0.2</code></td>
+<td><code>configs/pathlines.json</code> ratio-mode cross-section seed density</td>
+<td><code>autoflow/algorithms/streamlines.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_min_seeds</code></td>
+<td>int</td>
+<td><code>50</code></td>
+<td><code>configs/pathlines.json</code> ratio-mode lower seed bound</td>
+<td><code>autoflow/algorithms/streamlines.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_seed_mode</code></td>
+<td>string</td>
+<td><code>fixed</code></td>
+<td><code>configs/pathlines.json</code>: choose <code>fixed</code> for the configured count per plane or <code>ratio</code> for area-dependent sampling</td>
+<td><code>autoflow/algorithms/streamlines.py</code>, <code>autoflow/core/models.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_max_seeds</code></td>
+<td>int</td>
+<td><code>250</code></td>
+<td><code>configs/pathlines.json</code> fixed launch count or ratio-mode cap; t=0 plane seeds are retained with the trajectory</td>
+<td><code>autoflow/algorithms/streamlines.py</code>, <code>autoflow/core/models.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_max_steps</code></td>
+<td>int</td>
+<td><code>200</code></td>
+<td><code>configs/pathlines.json</code> maximum VTK cardiac-frame updates per pathline</td>
+<td><code>autoflow/algorithms/streamlines.py</code>, <code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_terminal_speed</code></td>
+<td>float</td>
+<td><code>0.01</code></td>
+<td><code>configs/pathlines.json</code> VTK pathline stop threshold in m/s</td>
+<td><code>autoflow/algorithms/streamlines.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_rng_seed</code></td>
+<td>int</td>
+<td><code>0</code></td>
+<td><code>configs/pathlines.json</code> deterministic seed selection</td>
+<td><code>autoflow/algorithms/streamlines.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_tube_radius</code></td>
+<td>float</td>
+<td><code>0.25</code></td>
+<td><code>configs/pathlines.json</code> pathline tube radius in mm</td>
+<td><code>autoflow/ui/viewer.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_color_mode</code></td>
+<td>string</td>
+<td><code>per_plane</code></td>
+<td><code>configs/pathlines.json</code>: stable <code>uniform</code>, <code>per_plane</code>, or <code>per_group</code> pathline colors</td>
+<td><code>autoflow/core/models.py</code>, <code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_color</code></td>
+<td>string</td>
+<td><code>deepskyblue</code></td>
+<td><code>configs/pathlines.json</code> uniform-mode pathline color</td>
+<td><code>autoflow/core/models.py</code>, <code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>pathline_temporal_cache_mb</code></td>
+<td>float</td>
+<td><code>512.0</code></td>
+<td><code>configs/pathlines.json</code> cap for VTK frame reuse during all-plane GUI pathlines; <code>0</code> uses rolling frames only</td>
+<td><code>autoflow/algorithms/streamlines.py</code>, <code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>autoseg</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>run auto segmentation if no segmentation exists</td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>autoseg_model</code></td>
+<td>string</td>
+<td>Dataset7020 <code>.sh</code> from the shipped config</td>
+<td>override the 4D model folder/script or static nnUNet model folder</td>
+<td><code>autoflow/algorithms/segmentation.py</code></td>
+</tr>
+<tr>
+<td><code>autoseg_backend</code></td>
+<td>string</td>
+<td><code>nnUNet4D</code> from the shipped config</td>
+<td>choose <code>nnUNet4D</code> temporal or <code>nnUNet</code> static inference</td>
+<td><code>autoflow/algorithms/segmentation.py</code></td>
+</tr>
+<tr>
+<td><code>autoseg_folds</code></td>
+<td>string</td>
+<td><code>single</code></td>
+<td>select one fold, all folds for an ensemble, or explicit fold IDs</td>
+<td><code>autoflow/algorithms/segmentation.py</code></td>
+</tr>
+<tr>
+<td><code>force_recompute_corr</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>ignore reusable background-phase correction cache</td>
+<td><code>autoflow/algorithms/data.py</code></td>
+</tr>
+<tr>
+<td><code>background_phase_write_cache</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td>write newly computed correction back to source H5</td>
+<td><code>autoflow/algorithms/data.py</code></td>
+</tr>
+<tr>
+<td><code>ignore_embedded_segmentation</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>ignore all segmentation embedded in the input for a cold run</td>
+<td><code>autoflow/algorithms/data.py</code></td>
+</tr>
+<tr>
+<td><code>force_recompute_seg</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>ignore AutoFlow-generated segmentation cache</td>
+<td><code>autoflow/algorithms/data.py</code>, <code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>write_segmentation_cache</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td>write generated segmentation back to source H5</td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>segmentation_only</code></td>
+<td>bool</td>
+<td><code>False</code></td>
+<td>stop after loading/generating segmentation</td>
+<td><code>autoflow/processing.py</code></td>
+</tr>
+<tr>
+<td><code>requested_videos</code></td>
+<td>list[str]</td>
+<td>empty</td>
+<td>export any of <code>plane</code>, <code>wss</code>, <code>tke</code>, <code>pg</code>, <code>streamlines</code></td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>add_plane_idx</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td>show or hide plane index labels in the plane video</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video_cfg["default"]["plane_color"]</code></td>
+<td>string</td>
+<td><code>yellow</code></td>
+<td>fallback plane color for plane videos</td>
+<td><code>autoflow/rendering/videos.py</code>, <code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video_cfg["default"]["plane_opacity"]</code></td>
+<td>float</td>
+<td><code>0.75</code></td>
+<td>fallback plane opacity for plane videos</td>
+<td><code>autoflow/rendering/videos.py</code>, <code>autoflow/ui/app.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video_cfg["label"]["prefix"]</code></td>
+<td>string</td>
+<td><code>planeidx=</code></td>
+<td>plane-video index label prefix before the plane number</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video_cfg["label"]["font_size"]</code></td>
+<td>int</td>
+<td><code>28</code></td>
+<td>plane-video index label font size</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>plane_video_cfg["label"]["text_color"]</code></td>
+<td>string</td>
+<td><code>black</code></td>
+<td>plane-video index label text color</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>window_size</code></td>
+<td>tuple[int, int]</td>
+<td><code>(1600, 1200)</code></td>
+<td>output render size for exported videos</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>pressure_gradient_clim</code></td>
+<td>tuple[float, float] or <code>None</code></td>
+<td><code>None</code></td>
+<td>explicit pressure-gradient video display range; <code>None</code> keeps the auto range</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>relative_pressure_clim</code></td>
+<td>tuple[float, float] or <code>None</code></td>
+<td><code>None</code></td>
+<td>explicit relative-pressure video display range; <code>None</code> keeps the symmetric auto range</td>
+<td><code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>streamline_clim</code></td>
+<td>tuple[float, float] or <code>None</code></td>
+<td><code>None</code></td>
+<td>explicit streamline velocity range; <code>None</code> uses <code>0</code> to the all-phase P99 velocity inside the segmentation</td>
+<td><code>autoflow/algorithms/streamlines.py</code>, <code>autoflow/rendering/videos.py</code></td>
+</tr>
+<tr>
+<td><code>wss_show_scalar_bar</code>, <code>tke_show_scalar_bar</code>, <code>pressure_gradient_show_scalar_bar</code>, <code>relative_pressure_show_scalar_bar</code>, <code>streamline_show_scalar_bar</code></td>
+<td>bool</td>
+<td><code>True</code></td>
+<td>show or hide the matching GUI and video colorbar</td>
+<td><code>autoflow/rendering/videos.py</code>, <code>autoflow/core/pipeline.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>WRLS+ARTO has no public device field. Its ARTO GMM stage uses CUDA automatically when PyTorch reports an available device and otherwise runs on CPU.</p>
+<h2 id="config-directory-support">Config Directory Support<a class="headerlink" href="#config-directory-support" title="Permanent link">&para;</a></h2>
+<p><code>AutoFlowConfig.from_config_dir()</code> loads the per-module JSON files from a config directory and converts them to public API defaults.</p>
+<p>Main code:</p>
+<ul>
+<li><code>autoflow/config.py</code></li>
+<li><code>autoflow/api.py:AutoFlowConfig.from_config_dir()</code></li>
+</ul>
+<h2 id="current-api-boundaries">Current API Boundaries<a class="headerlink" href="#current-api-boundaries" title="Permanent link">&para;</a></h2>
+<ul>
+<li>batch processing flows through <code>run_case()</code> and <code>run_batch()</code></li>
+<li>interactive GUI editing is not exposed as a stable batch API</li>
+<li>GUI pathlines are interactive behavior, not a public batch-processing API</li>
+<li>offline videos are supported through <code>requested_videos</code> in <code>run_case()</code> and <code>run_batch()</code></li>
+<li>PWV is available through the config bundle loaded by <code>AutoFlowConfig.from_config_dir()</code> and <code>build_workspace()</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="上一页: CLI details">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                CLI details
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../features/segmentation/" class="md-footer__link md-footer__link--next" aria-label="下一页: Segmentation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Segmentation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © AutoFlow contributors
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>
