@@ -1,3 +1,24 @@
+# Yuyang Ren 个人主页维护
+
+本仓库与 `../PersonalCV` 一起更新。统一内容源是 `../PersonalCV/cv_data.json`：教育、学术服务、奖项、论文列表，以及下载版 Word/PDF 都从这里维护。
+
+```bash
+# 在 PersonalCV 环境中安装过 requirements.txt，并确保 LibreOffice 可用
+python ../PersonalCV/update_homepage.py --homepage .
+python ../PersonalCV/update_homepage.py --homepage . --verify
+bundle exec jekyll build
+```
+
+也可运行 `bash scripts/update_cv_json.sh`，其现在调用同一个同步脚本。`PYTHON` 环境变量可指定 Python 解释器。
+
+- 个人介绍侧栏 GitHub 链接下方的 `CV` 直接打开 `files/Yuyang_Ren_CV.pdf`；不设独立在线 CV 页面或顶栏导航。旧 `/cv/`、`/cv-json/` 地址仅跳转到 PDF。Word 副本仍由同步脚本维护。
+- 首页 Education、Academic Service、Honors and Awards 和 `/publications/`：读取 `_data/cv.json`。
+- `_data/cv.json`、`_data/cv_build.json` 和 CV 下载文件为生成文件，不要手动修改；不要再用旧的 `cv_markdown_to_json.py` 覆盖这些数据。
+- 原有 `_publications` 详情页和链接保留；新增论文列表条目只需修改统一 JSON，需要独立详情页时再添加 Markdown 文件。
+- 新增条目后重新生成、查看 PDF 和站点，再分别提交两个仓库。配套维护约定见两个仓库的 `AGENTS.md`。
+
+以下为上游模板说明。
+
 # Academic Pages
 **Academic Pages is a GitHub Pages template for personal and professional portfolio-oriented websites.**
 

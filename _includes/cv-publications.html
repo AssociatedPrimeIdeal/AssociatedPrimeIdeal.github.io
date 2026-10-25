@@ -1,0 +1,31 @@
+{% assign groups = 'journal_articles,conference_papers,conference_abstracts' | split: ',' %}
+{% assign headings = 'Journal Articles,Conference Papers,Conference Abstracts' | split: ',' %}
+{% assign person_name = site.data.cv.profile.name | escape %}
+{% capture bold_name %}<strong>{{ person_name }}</strong>{% endcapture %}
+{% for group in groups %}
+  {% assign entries = site.data.cv[group] %}
+  {% if entries.size > 0 %}
+  <h2 id="{{ group | replace: '_', '-' }}">{{ headings[forloop.index0] }}</h2>
+  {% for entry in entries %}
+  <div class="list__item">
+    <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+      <p class="archive__item-title" itemprop="headline">
+        {% if entry.url and entry.url != empty %}
+        <a href="{{ entry.url | relative_url | escape }}"><strong>{{ entry.title | escape }}</strong></a>
+        {% else %}
+        <strong>{{ entry.title | escape }}</strong>
+        {% endif %}
+      </p>
+      <p class="archive__item-excerpt">{{ entry.authors | escape | replace: person_name, bold_name }}</p>
+      <p class="archive__item-excerpt"><em>{{ entry.venue | escape }}</em>{% if entry.details and entry.details != empty %}, {{ entry.details | escape }}{% endif %}</p>
+      {% if entry.doi and entry.doi != empty %}
+      <p class="archive__item-excerpt"><a href="https://doi.org/{{ entry.doi | escape }}">doi:{{ entry.doi | escape }}</a></p>
+      {% endif %}
+      {% if entry.status and entry.status != empty %}
+      <p class="archive__item-excerpt"><strong><em>{{ entry.status | escape }}</em></strong></p>
+      {% endif %}
+    </article>
+  </div>
+  {% endfor %}
+  {% endif %}
+{% endfor %}

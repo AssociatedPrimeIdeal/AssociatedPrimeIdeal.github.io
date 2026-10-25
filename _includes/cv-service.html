@@ -1,0 +1,8 @@
+{% if site.data.cv.academic_service.size > 0 %}
+<h2 id="academic-service">Academic Service</h2>
+<ul>
+  {% for entry in site.data.cv.academic_service %}
+  <li><strong>{{ entry.role | escape }}</strong>, {{ entry.venue | escape }}{% if entry.years and entry.years != empty %} | {{ entry.years | escape }}{% endif %}</li>
+  {% endfor %}
+</ul>
+{% endif %}

@@ -1,0 +1,8 @@
+{% if site.data.cv.awards.size > 0 %}
+<h2 id="honors-and-awards">Honors and Awards</h2>
+<ul>
+  {% for entry in site.data.cv.awards %}
+  <li><strong>{{ entry.year | escape }}</strong> — {{ entry.description | escape }}</li>
+  {% endfor %}
+</ul>
+{% endif %}

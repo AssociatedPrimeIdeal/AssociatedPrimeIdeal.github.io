@@ -1,0 +1,14 @@
+{
+  "inputs": {
+    "cv_data.json": "739bfb73e61ba010b36d0d1e6b5095c5e81da63514169d817a0696005484fd3d",
+    "build_cv.py": "3ead3bfb2fa9cc38cac54f1e384b34abe641708d59460a26be154f02c98ce51e",
+    "requirements.txt": "f0d83d76e86848cb0aae2d3e88a38ba45d972e3e8e4c626ed50a9ad8c5f443e1",
+    "assets/portrait.png": "c71254fe8ca8b734da473126ccfca7293f780ab0a73a54132253616f8ec3ac89",
+    "fonts/DejaVuSans-Bold.ttf": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895",
+    "fonts/DejaVuSans.ttf": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280"
+  },
+  "downloads": {
+    "docx": "44bb36180ecf1a3732af9b98ad951ae94e2ea9ac0778c2f19bf6b3594e9a2f76",
+    "pdf": "23c86eeb752e5698f5d9ff5bfab7a6b0274716a8f2f00ef36257c1eeb54562a0"
+  }
+}

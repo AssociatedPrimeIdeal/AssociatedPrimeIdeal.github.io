@@ -1,152 +1,189 @@
 {
-  "basics": {
-    "name": "Your Sidebar Name",
-    "email": "none@example.org",
-    "phone": "",
-    "website": "https://academicpages.github.io",
-    "summary": "Currently employed at Red Brick University. Short biography for the left-hand sidebar",
-    "location": {
-      "address": "",
-      "postalCode": "",
-      "city": "Earth",
-      "countryCode": "US",
-      "region": ""
-    },
-    "profiles": [
+  "profile": {
+    "name": "Yuyang Ren",
+    "position": "Ph.D. Student in Computer Science",
+    "affiliation": "ShanghaiTech University",
+    "location": "Shanghai, China",
+    "email": "renyy2022@shanghaitech.edu.cn",
+    "photo": "assets/portrait.png",
+    "links": [
       {
-        "network": "Google Scholar",
-        "username": "",
-        "url": "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+        "label": "associatedprimeideal.github.io",
+        "url": "https://associatedprimeideal.github.io/"
       },
       {
-        "network": "ORCID",
-        "username": "",
-        "url": "https://orcid.org/yourorcidurl"
+        "label": "Google Scholar",
+        "url": "https://scholar.google.com/citations?user=5L1wFjUAAAAJ&hl=en"
       },
       {
-        "network": "GitHub",
-        "username": "academicpages",
-        "url": "https://github.com/academicpages"
+        "label": "GitHub",
+        "url": "https://github.com/AssociatedPrimeIdeal"
       }
     ]
   },
-  "work": [],
+  "layout": {
+    "font": "DejaVu Sans",
+    "body_pt": 10.5,
+    "abstracts_new_page": false
+  },
   "education": [
     {
-      "institution": "GitHub University",
-      "area": "Ph.D in Version Control Theory",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2018",
-      "gpa": null,
-      "courses": []
+      "institution": "ShanghaiTech University",
+      "dates": "2022 - Present",
+      "degree": "Ph.D. in Computer Science",
+      "advisor": "Advisor: Prof. Peng Hu"
     },
     {
-      "institution": "GitHub University",
-      "area": "M.S. in Jekyll",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2014",
-      "gpa": null,
-      "courses": []
-    },
-    {
-      "institution": "GitHub University",
-      "area": "B.S. in GitHub",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2012",
-      "gpa": null,
-      "courses": []
+      "institution": "Shanghai University",
+      "dates": "2018 - 2022",
+      "degree": "B.S. in Mathematics and Applied Mathematics",
+      "advisor": ""
     }
   ],
-  "skills": [],
-  "languages": [],
-  "interests": [],
-  "references": [],
-  "publications": [
+  "academic_service": [
     {
-      "name": "Paper Title Number 1",
-      "publisher": "Journal 1",
-      "releaseDate": "2009-10-01",
-      "website": "https://academicpages.github.io/files/paper1.pdf",
-      "summary": "This paper is about the number 1. The number 2 is left for future work."
+      "role": "Reviewer",
+      "venue": "Journal of Cardiovascular Magnetic Resonance (JCMR)",
+      "years": ""
     },
     {
-      "name": "Paper Title Number 2",
-      "publisher": "Journal 1",
-      "releaseDate": "2010-10-01",
-      "website": "https://academicpages.github.io/files/paper2.pdf",
-      "summary": "This paper is about the number 2. The number 3 is left for future work."
+      "role": "Reviewer",
+      "venue": "PLOS Digital Health",
+      "years": ""
     },
     {
-      "name": "Paper Title Number 3",
-      "publisher": "Journal 1",
-      "releaseDate": "2015-10-01",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about the number 3. The number 4 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 4",
-      "publisher": "GitHub Journal of Bugs",
-      "releaseDate": "2024-02-17",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about fixing template issue #693."
+      "role": "Reviewer",
+      "venue": "International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI)",
+      "years": ""
     }
   ],
-  "presentations": [
+  "awards": [
     {
-      "name": "Talk 1 on Relevant Topic in Your Field",
-      "event": "UC San Francisco, Department of Testing",
-      "date": "2012-03-01",
-      "location": "San Francisco, CA, USA",
-      "description": ""
+      "year": "2026",
+      "description": "Magna Cum Laude Award, ISMRM & ISMRT Annual Meeting. Oral presentation: PUDIP-Flow: An Unsupervised and Segmentation-Free Phase Unwrapping Method for Aortic and Cerebrovascular 4D Flow MRI."
     },
     {
-      "name": "Tutorial 1 on Relevant Topic in Your Field",
-      "event": "UC-Berkeley Institute for Testing Science",
-      "date": "2013-03-01",
-      "location": "Berkeley, CA, USA",
-      "description": ""
+      "year": "2026",
+      "description": "Magna Cum Laude Award, ISMRM & ISMRT Annual Meeting. Oral presentation: A Fully Automated Pipeline for Multi-Region 4D Flow MRI Analysis."
     },
     {
-      "name": "Talk 2 on Relevant Topic in Your Field",
-      "event": "London School of Testing",
-      "date": "2014-02-01",
-      "location": "London, UK",
-      "description": ""
+      "year": "2025",
+      "description": "Magna Cum Laude Award, ISMRM & ISMRT Annual Meeting. Digital poster: Comparison of reconstruction methods of highly accelerated 3D dynamic cardiovascular MRI using the 4D XCAT phantom."
     },
     {
-      "name": "Conference Proceeding talk 3 on Relevant Topic in Your Field",
-      "event": "Testing Institute of America 2014 Annual Conference",
-      "date": "2014-03-01",
-      "location": "Los Angeles, CA, USA",
-      "description": ""
+      "year": "2022",
+      "description": "Third Place, Middle School Information Layout File Classification Challenge."
+    },
+    {
+      "year": "2021",
+      "description": "Mathematical Contest in Modeling: Honorable Mention."
+    },
+    {
+      "year": "2019",
+      "description": "Shanghai University First-Class Academic Scholarship."
+    },
+    {
+      "year": "2019",
+      "description": "Higher Education Press Cup China Undergraduate Mathematical Contest in Modeling, National Second Prize."
     }
   ],
-  "teaching": [
+  "journal_articles": [
     {
-      "course": "Teaching experience 1",
-      "institution": "University 1, Department",
-      "date": "2014-01-01",
-      "role": "Undergraduate course",
-      "description": ""
-    },
-    {
-      "course": "Teaching experience 2",
-      "institution": "University 1, Department",
-      "date": "2015-01-01",
-      "role": "Workshop",
-      "description": ""
+      "title": "Fully self-gated dual-venc five-dimensional flow magnetic resonance imaging for simultaneous imaging of the cardiovascular and portal venous systems: A feasibility study",
+      "authors": "Yuyang Ren, Wen Ye, Wenchao Yang, Wenjian Liu, Haotian Hong, Junpu Hu, Jiayu Zhu, Haikun Qi, Fei Shan, Peng Hu, and Zijian Zhou",
+      "venue": "Journal of Cardiovascular Magnetic Resonance",
+      "status": "",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1097664726000682",
+      "details": "28(2), 102750, 2026",
+      "doi": "10.1016/j.jocmr.2026.102750"
     }
   ],
-  "portfolio": [
+  "conference_papers": [
     {
-      "name": "Portfolio item number 1",
-      "category": "portfolio",
-      "date": "",
-      "url": "",
-      "description": "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+      "title": "Unsupervised and Segmentation-Free Phase Unwrapping for 4D Flow MRI Using Deep Image Prior",
+      "authors": "Yuyang Ren, Zijian Zhou, and Peng Hu",
+      "venue": "Medical Image Computing and Computer Assisted Intervention (MICCAI) 2026",
+      "status": "Accepted",
+      "url": "https://associatedprimeideal.github.io/files/unsupervised-segmentation-free-phase-unwrapping-4d-flow-mri-deep-image-prior-miccai-2026.pdf"
+    },
+    {
+      "title": "Accelerated 4D Flow MRI Using Deep Low-Rank Plus Sparse Neural Network and Complex Difference",
+      "authors": "Yuyang Ren, Wenjian Liu, Zijian Zhou, Haikun Qi, and Peng Hu",
+      "venue": "IEEE International Symposium on Biomedical Imaging (ISBI) 2024",
+      "status": "",
+      "url": "https://dblp.org/rec/conf/isbi/RenLZQH24"
+    }
+  ],
+  "conference_abstracts": [
+    {
+      "title": "PUDIP-Flow: An Unsupervised and Segmentation-Free Phase Unwrapping Method for Aortic and Cerebrovascular 4D Flow MRI",
+      "authors": "Yuyang Ren, Zijian Zhou, Yuan Feng, Yining Wang, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2026",
+      "status": "Oral Presentation (Magna Cum Laude Award)",
+      "url": "https://echo.ismrm.org/program/ISMRM2026/at-a-glance/session/515"
+    },
+    {
+      "title": "A Fully Automated Pipeline for Multi-Region 4D Flow MRI Analysis",
+      "authors": "Yuyang Ren, Ruiyu Cao, Zijian Zhou, Chengyan Wang, Hao Li, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2026",
+      "status": "Oral Presentation (Magna Cum Laude Award)",
+      "url": "https://echo.ismrm.org/program/ISMRM2026/at-a-glance/session/637"
+    },
+    {
+      "title": "Spectral optimization of rosette k-space trajectories for improved fat suppression",
+      "authors": "Xin Bai, Haotian Hong, Yuyang Ren, Wenlei Shang, Zijian Zhou, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2026",
+      "status": "Digital Poster",
+      "url": "https://echo.ismrm.org/program/ISMRM2026/at-a-glance/session/712"
+    },
+    {
+      "title": "Automated Segmentation of Multi-Region 4D Flow MRI Using Deep Learning",
+      "authors": "Yuyang Ren, Ruiyu Cao, Zijian Zhou, Chengyan Wang, Hao Li, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2026",
+      "status": "Digital Poster",
+      "url": "https://echo.ismrm.org/program/ISMRM2026/at-a-glance/session/413"
+    },
+    {
+      "title": "Unsupervised phase unwrapping for aortic 4D flow MRI using deep image prior",
+      "authors": "Yuyang Ren, Haotian Hong, Zijian Zhou, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2025",
+      "status": "Digital Poster",
+      "url": "https://archive.ismrm.org/2025/4277.html"
+    },
+    {
+      "title": "Fully self-gated dual-venc 5D flow MRI for simultaneous imaging of the cardiovascular and portal venous systems",
+      "authors": "Yuyang Ren, Wen Ye, Wenchao Yang, Wenjian Liu, Haotian Hong, Junpu Hu, Jiayu Zhu, Zijian Zhou, Haikun Qi, Fei Shan, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2025",
+      "status": "Digital Poster",
+      "url": "https://archive.ismrm.org/2025/1890.html"
+    },
+    {
+      "title": "Frequency Modulated Continuous Wave Radar-based prospective respiratory motion correction: Initial application for 2D cardiac cine MRI",
+      "authors": "Jiameng Diao, Yuyang Ren, Wenjian Liu, Peng Liu, Han Wang, Jiayu Zhu, Jian Xu, Zijian Zhou, Haikun Qi, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2025",
+      "status": "Power Pitch",
+      "url": "https://archive.ismrm.org/2025/0331.html"
+    },
+    {
+      "title": "Comparison of reconstruction methods of highly accelerated 3D dynamic cardiovascular MRI using the 4D XCAT phantom",
+      "authors": "Yuyang Ren, Zijian Zhou, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2025",
+      "status": "Digital Poster (Magna Cum Laude Award)",
+      "url": "https://archive.ismrm.org/2025/1819.html"
+    },
+    {
+      "title": "Bullet: An Acceleration Method for Cartesian Partial Echo Acquisition",
+      "authors": "Haotian Hong, Yuyang Ren, Wenjian Liu, Zijian Zhou, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2025",
+      "status": "Digital Poster",
+      "url": "https://www.ismrm.org/25/program-files/D-21.htm"
+    },
+    {
+      "title": "MRI Acceleration with Frequency Encoding Subsampling using Double Lobe Gradient (DOGE) Readout Waveform",
+      "authors": "Haotian Hong, Wenjian Liu, Yuyang Ren, Wenlei Shang, Wenchao Yang, Tianhao Jiang, Zhuocheng Xie, Jiayu Zhu, Haikun Qi, and Peng Hu",
+      "venue": "ISMRM & ISMRT 2024",
+      "status": "Digital Poster",
+      "url": "https://archive.ismrm.org/2024/3259.html"
     }
   ]
 }

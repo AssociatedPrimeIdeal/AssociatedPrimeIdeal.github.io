@@ -1,0 +1,11 @@
+{% if site.data.cv.education.size > 0 %}
+<h2 id="education">Education</h2>
+<ul>
+  {% for entry in site.data.cv.education %}
+  <li>
+    <strong>{{ entry.institution | escape }}</strong>, {{ entry.dates | escape }}<br />
+    {{ entry.degree | escape }}{% if entry.advisor and entry.advisor != empty %}<br />{{ entry.advisor | escape }}{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
