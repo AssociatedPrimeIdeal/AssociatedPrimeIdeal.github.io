@@ -12,7 +12,7 @@ bundle exec jekyll build
 也可运行 `bash scripts/update_cv_json.sh`，其现在调用同一个同步脚本。`PYTHON` 环境变量可指定 Python 解释器。
 
 - 个人介绍侧栏 GitHub 链接下方的 `CV` 直接打开 `files/Yuyang_Ren_CV.pdf`；不设独立在线 CV 页面或顶栏导航。旧 `/cv/`、`/cv-json/` 地址仅跳转到 PDF。Word 副本仍由同步脚本维护。
-- 首页 Education、Academic Service、Honors and Awards 和 `/publications/`：读取 `_data/cv.json`。
+- 首页 Training History、Academic Service、Honors and Awards 和 `/publications/`：读取 `_data/cv.json`。Training History 将 `education` 与 `homepage.training_history` 连接；出生和中小学经历只放在后者，不进入下载版 CV。
 - `_data/cv.json`、`_data/cv_build.json` 和 CV 下载文件为生成文件，不要手动修改；不要再用旧的 `cv_markdown_to_json.py` 覆盖这些数据。
 - 原有 `_publications` 详情页和链接保留；新增论文列表条目只需修改统一 JSON，需要独立详情页时再添加 Markdown 文件。
 - 新增条目后重新生成、查看 PDF 和站点，再分别提交两个仓库。配套维护约定见两个仓库的 `AGENTS.md`。

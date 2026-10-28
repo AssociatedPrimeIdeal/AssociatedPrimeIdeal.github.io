@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "cv_data.json": "739bfb73e61ba010b36d0d1e6b5095c5e81da63514169d817a0696005484fd3d",
+    "cv_data.json": "9a0fc3c73f7dd96215bbce9684ca497c1dc0f87d4d82cd3b8295e450eda9b516",
     "build_cv.py": "3ead3bfb2fa9cc38cac54f1e384b34abe641708d59460a26be154f02c98ce51e",
     "requirements.txt": "f0d83d76e86848cb0aae2d3e88a38ba45d972e3e8e4c626ed50a9ad8c5f443e1",
     "assets/portrait.png": "c71254fe8ca8b734da473126ccfca7293f780ab0a73a54132253616f8ec3ac89",
@@ -9,6 +9,6 @@
   },
   "downloads": {
     "docx": "44bb36180ecf1a3732af9b98ad951ae94e2ea9ac0778c2f19bf6b3594e9a2f76",
-    "pdf": "23c86eeb752e5698f5d9ff5bfab7a6b0274716a8f2f00ef36257c1eeb54562a0"
+    "pdf": "5bc97a812b5bf0df701fff82c9e0007bc20b4a4d43ccecf0d30fbe78d346e96f"
   }
 }

@@ -1,10 +1,13 @@
-{% if site.data.cv.education.size > 0 %}
-<h2 id="education">Education</h2>
+{% assign training_history = site.data.cv.education %}
+{% if site.data.cv.homepage.training_history %}
+  {% assign training_history = training_history | concat: site.data.cv.homepage.training_history %}
+{% endif %}
+{% if training_history.size > 0 %}
+<h2 id="training-history">Training History</h2>
 <ul>
-  {% for entry in site.data.cv.education %}
+  {% for entry in training_history %}
   <li>
-    <strong>{{ entry.institution | escape }}</strong>, {{ entry.dates | escape }}<br />
-    {{ entry.degree | escape }}{% if entry.advisor and entry.advisor != empty %}<br />{{ entry.advisor | escape }}{% endif %}
+    <strong>{{ entry.institution | escape }}</strong>, {{ entry.dates | escape }}{% if entry.degree and entry.degree != empty %}<br />{{ entry.degree | escape }}{% endif %}{% if entry.role and entry.role != empty %}<br />{{ entry.role | escape }}{% endif %}{% if entry.advisor and entry.advisor != empty %}<br />{{ entry.advisor | escape }}{% endif %}
   </li>
   {% endfor %}
 </ul>
